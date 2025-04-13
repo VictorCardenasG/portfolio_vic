@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Emotion Recognition</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Add custom cursor element -->
+    <div class="custom-cursor"></div>
+
+    <!-- Header -->
+    <header>
+        <div class="logo">
+            <a href="index.html"><img src="logo.png" alt="Logo"></a>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="about.html">About</a></li>
+                <li><a href="index.html#projects">Projects</a></li>
+                <li><a href="cv.html">CV</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Project Content -->
+    <section class="project-content">
+        <h1>Emotion Recognition Using Deep Learning</h1>
+        <p>The objective of this project is to develop a deep learning model that can classify human emotions from images. The model is trained on a dataset of facial images categorized into six emotion classes: Anger, Fear, Happy, Neutral, Sad, and Surprise. The project utilizes a convolutional neural network (CNN) architecture to achieve this task, leveraging the ResNet-152 backbone for feature extraction.</p>
+
+    <section id="pipeline-diagram" class="project-section">
+        <h2>Project Stages</h2>
+        <div class="pipeline-diagram">
+            <div class="stage" data-target="data-collection">1. Data Collection</div>
+            <div class="stage" data-target="data-understanding">2. Data Understanding</div>
+            <div class="stage" data-target="data-preparation">3. Data Preparation</div>
+            <div class="stage" data-target="eda">4. Exploratory Data Analysis (EDA)</div>
+            <div class="stage" data-target="feature-engineering">5. Feature Engineering</div>
+            <div class="stage" data-target="modeling">6. Modeling</div>
+            <div class="stage" data-target="results">7. Results</div>
+            <div class="stage" data-target="conclusion">Conclusions</div>
+        </div>
+    </section>
+
+        <!-- Data Collection -->
+        <section id="data-collection" class="project-section">
+            <h2>Data Collection</h2>
+            <p>When I set out to gather data for this project, my primary intention was to collect as many images of facial expressions as possible. A robust and diverse dataset is crucial because it provides the model with a wide range of examples to learn from, allowing it to capture the subtle nuances and variations in human emotions. By including images from different demographics, lighting conditions, and facial orientations, I aimed to ensure that the model could generalize well to new, unseen images. A comprehensive dataset enhances the model's ability to distinguish between similar emotions and reduces the likelihood of overfitting, ultimately leading to improved accuracy and performance in real-world applications. </p>
+
+<p>I used the <a href="https://www.kaggle.com/datasets/nelgiriyewithana/most-streamed-spotify-songs-2024" class="highlight">FER-2013</a> as well as <a href="https://www.kaggle.com/datasets/aadityasinghal/facial-expression-dataset" class="highlight">Aaditya Singhal's</a> and <a href="https://www.kaggle.com/datasets/jonathanoheix/face-expression-recognition-dataset" class="highlight">Jonathan Oheix's</a> dataset, the three, recuperated from Kaggle.</p>
+ 
+            <p> I also manually added and labeled images collected from the internet under creative commons licenses.</p>
+           
+                <pre><code>
+# Load previously created Audio features Dataset
+file_path = 'C:/Users/Victor Cardenas/Documents/dataset_projects/spotify_streaming/audio_features.csv'
+audio_features = pd.read_csv(file_path, encoding='latin1')
+
+# Load Spotify Most Streamed dataset
+file_path = 'C:/Users/Victor Cardenas/Documents/dataset_projects/spotify_streaming/Most Streamed Spotify Songs 2024.csv'
+spotify_data = pd.read_csv(file_path, encoding='latin1')
+                </code></pre>
+
+        <section id="data-understanding" class="project-section">
+            <h2>Data Understanding</h2>
+
+            <p>The following are the emotions used for training this model:</p>
+
+            <ul class="audio-features-list">
+                <li>
+                    <h3>Anger</h3>
+                    <p>Typically characterized by lowered eyebrows, tightly pressed lips, and a tense facial expression. The eyes may appear narrowed, and the forehead might have furrows.</p>
+
+                </li>
+                <li>
+                    <h3>Fear</h3>
+                    <p>Often depicted by wide eyes, raised eyebrows, and a mouth slightly open. The face may show signs of tension, and the expression often conveys alertness or readiness to respond.</p>
+
+                </li>
+                <li>
+                    <h3>Happy</h3>
+                    <p>Recognizable by a smiling mouth, with cheeks raised and crow's feet around the eyes. A genuine smile, known as the Duchenne smile, also includes the movement of muscles around the eyes.</p>
+                </li>
+	        <li>
+                    <h3>Neutral</h3>
+                    <p>This emotion serves as a baseline, with no distinctive features of emotional expression. The facial muscles are relaxed, and there is an absence of emotional intensity.</p>
+                </li>
+	        <li>
+                    <h3>Sad</h3>
+                    <p>Features include a frown with downturned corners of the mouth, drooping eyelids, and an overall downcast appearance. The eyebrows may also be slightly raised toward the center.</p>
+                </li>
+	        <li>
+                    <h3>Surprise</h3>
+                    <p>Characterized by wide eyes, raised eyebrows, and a dropped jaw. The expression suggests a sudden awareness or shock, often with an open mouth.</p>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Data Preparation Section -->
+        <section id="data-preparation" class="project-section">            
+		    <h2>Data Preparation</h2>
+            <p>The dataset consists of images categorized into six emotion classes stored in subdirectories named after each emotion. The images are loaded and labeled accordingly.</p>
+            <p>Below, the corresponding code.</p>
+
+                <pre><code>
+root_dir = "your_path"
+sub_folders = ["Anger", "Fear", "Happy", "Neutral", "Sad", "Surprise"]
+labels = [0, 1, 2, 3, 4, 5]
+
+data = []
+
+for s, l in zip(sub_folders, labels):
+    for r, d, f in os.walk(os.path.join(root_dir, s)):
+        for file in f:
+            if ".jpg" in file:
+                data.append((os.path.join(s,file), l))
+
+df = pd.DataFrame(data, columns=['file_name','label'])
+
+                </code></pre>
+
+        </section>
+
+        <!-- Data Splitting -->
+        <section id="eda" class="project-section">            
+            <h2>2. Data Splitting</h2>
+            <p>The dataset is split into training and validation sets to evaluate the model's performance.
+
+</p>
+
+      <pre><code>
+from sklearn.model_selection import train_test_split
+
+X = df
+y = df.label
+
+train_df, valid_df, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
+
+            </code></pre>
+
+        </section>
+
+        <!-- Data Augmentation -->
+        <section id="feature-engineering" class="project-section">
+            <h2>Data Augmentation</h2>
+            <p>Albumentations library is used for data augmentation to increase the diversity of the training dataset and help the model generalize better.</p>
+
+    <pre><code>
+transform_soft = A.Compose([
+    A.Resize(cfg["image_size"], cfg["image_size"]),
+    A.Rotate(p=0.6, limit=[-45,45]),
+    A.HorizontalFlip(p=0.6),
+    A.CoarseDropout(max_holes=1, max_height=64, max_width=64, p=0.3),
+    ToTensorV2()
+])
+
+            </code></pre>
+        </div>
+
+        <!-- Model Training and Evaluation -->
+        <section id="feature-engineering" class="project-section">
+            <h2>Model Training and Evaluation</h2>
+            <p>The ResNet-152 model is used as the backbone for this classification task. It is pre-trained on ImageNet and fine-tuned on our emotion dataset.</p>
+
+    <pre><code>
+import timm
+
+model = timm.create_model(cfg["backbone"], pretrained=True, num_classes=cfg["n_classes"]).to(cfg["device"])
+
+            </code></pre>
+        </div>
+
+<p>The model is trained using the Adam optimizer and CrossEntropy loss function. A cosine annealing learning rate scheduler is used to adjust the learning rate during training.</p>
+
+    <pre><code>
+criterion = nn.CrossEntropyLoss()
+optimizer = torch.optim.Adam(
+    model.parameters(), 
+    lr=cfg["learning_rate"], 
+    weight_decay=0,
+)
+scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(
+    optimizer, 
+    T_max=np.ceil(len(train_dataloader.dataset) / cfg["batch_size"]) * cfg["epochs"],
+    eta_min=cfg["lr_min"]
+)
+
+acc, loss, val_acc, val_loss, model = fit(model, optimizer, scheduler, cfg, train_dataloader, valid_dataloader)
+
+            </code></pre>
+
+<p>The model's accuracy and loss are evaluated on the validation dataset to assess its performance.</p>
+
+    <pre><code>
+model.eval()
+
+final_y = []
+final_y_pred = []
+
+for step, batch in tqdm(enumerate(valid_dataloader), total=len(valid_dataloader)):
+    X = batch[0].to(cfg["device"])
+    y = batch[1].to(cfg["device"])
+
+    with torch.no_grad():
+        y_pred = model(X)
+
+        y = y.detach().cpu().numpy().tolist()
+        y_pred = y_pred.detach().cpu().numpy().tolist()
+
+        final_y.extend(y)
+        final_y_pred.extend(y_pred)
+
+final_y_pred_argmax = np.argmax(final_y_pred, axis=1)
+metric = calculate_metric(final_y, final_y_pred_argmax)
+
+valid_df['prediction'] = final_y_pred_argmax
+print(valid_df.head(20))
+
+
+            </code></pre>
+
+        <!-- Results -->
+        <section id="results" class="project-section">
+            <h2>Results</h2>
+
+<p>Once the model finished the whole process, I wanted to test it on a whole new dataset and created a function to print the results:</p>
+
+            <div class="code-snippet">
+                <pre><code>
+# Function to predict emotion of a single image
+def predict_emotion(image_path):
+    # Create dataset and dataloader for the single image
+    dataset = CustomDataset(cfg, image_path)
+    dataloader = DataLoader(dataset, batch_size=1, shuffle=False)
+    
+    for step, image in enumerate(dataloader):
+        if image is None:
+            continue
+
+        X = image.to(cfg["device"])
+
+        with torch.no_grad():
+            y_pred = model(X)
+            y_pred_argmax = np.argmax(y_pred.cpu().numpy(), axis=1)[0]
+
+    emotions = ["Anger", "Fear", "Happy", "Neutral", "Sad", "Surprise"]
+    predicted_emotion = emotions[y_pred_argmax]
+    return predicted_emotion
+
+# Traverse the folder structure and predict emotions for each image
+def traverse_and_predict(main_folder):
+    emotions = ["Anger", "Fear", "Happy", "Neutral", "Sad", "Surprise"]
+    results = []
+
+    for emotion in emotions:
+        folder_path = os.path.join(main_folder, emotion)
+        for file_name in os.listdir(folder_path):
+            if file_name.lower().endswith(('.jpg', '.jpeg', '.png')):
+                image_path = os.path.join(folder_path, file_name)
+                predicted_emotion = predict_emotion(image_path)
+                results.append((file_name, emotion, predicted_emotion))
+                print(f"Image: {file_name}, True Emotion: {emotion}, Predicted Emotion: {predicted_emotion}")
+
+    return results
+
+                </code></pre>
+            </div>
+
+            <div class="code-snippet">
+                <pre><code>
+
+# Example usage
+main_folder = r"C:/Users/Victor Cardenas/Documents/MSC/SEMESTRE II/IDI II/PYTHON/data_prueba"
+results = traverse_and_predict(main_folder)
+
+# Optional: Print summary of results
+correct_predictions = sum(1 for _, true_emotion, predicted_emotion in results if true_emotion == predicted_emotion)
+total_predictions = len(results)
+accuracy = correct_predictions / total_predictions if total_predictions > 0 else 0
+
+print(f"Total images: {total_predictions}")
+print(f"Correct predictions: {correct_predictions}")
+print(f"Accuracy: {accuracy:.2f}")
+                </code></pre>
+            </div>
+
+<p>The results were the following:</p>
+
+                <pre><code>
+
+Total images: 168
+Correct predictions: 102
+Accuracy: 0.61
+
+                </code></pre>
+
+<p>At first glance it seems the model is performing quite low (in fact it is), however, when looking at the predictions it did, one can observe the model is predicting with a relatively good accuracy (80%) 4 out of 6 emotions.</p>
+
+    <section class="data-table">
+        <table>
+            <thead>
+                <tr>
+                    <th>True Emotion</th>
+                    <th>Incorrect</th>
+                    <th>Correct</th>
+                    <th>Total</th>
+                    <th>Incorrect Percentage</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Anger</td>
+                    <td>2</td>
+                    <td>19</td>
+                    <td>21</td>
+                    <td>9.523810</td>
+                </tr>
+                <tr>
+                    <td>Fear</td>
+                    <td>45</td>
+                    <td>18</td>
+                    <td>63</td>
+                    <td>71.428571</td>
+                </tr>
+                <tr>
+                    <td>Happy</td>
+                    <td>7</td>
+                    <td>25</td>
+                    <td>32</td>
+                    <td>21.875000</td>
+                </tr>
+                <tr>
+                    <td>Neutral</td>
+                    <td>3</td>
+                    <td>20</td>
+                    <td>23</td>
+                    <td>13.043478</td>
+                </tr>
+                <tr>
+                    <td>Sad</td>
+                    <td>9</td>
+                    <td>8</td>
+                    <td>17</td>
+                    <td>52.941176</td>
+                </tr>
+                <tr>
+                    <td>Surprise</td>
+                    <td>0</td>
+                    <td>12</td>
+                    <td>12</td>
+                    <td>0.0000</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
+
+<p>Taking a look at the confusion matrix, it is possible to notice 'Anger', 'Fear' and 'Surprise' are being constantly confused. This is something to be fixed in future improvements.</p>
+
+ 	    <!-- Confussion Matrix -->
+            <img src="confusion_matrix_emotions.png" alt="Confusion Matrix" class="project-image">
+
+
+        <!-- Conclusion -->
+        <section id="conclusion" class="project-section">
+            <h2>Conclusion and Next Steps</h2>
+
+<p>The emotion recognition model demonstrates the potential of deep learning techniques in classifying human emotions from facial images. The project successfully implemented a convolutional neural network with a ResNet-152 backbone, applied data augmentation techniques, and fine-tuned the model using a cosine annealing scheduler.</p>
+
+<p>To further enhance the model's performance, consider the following steps:</p>
+
+            <ul class="regular-list">
+        <li>
+            <h3>Experiment with Different Architectures</h3>
+            <p>Try using other state-of-the-art models like EfficientNet or ViT.</p>
+        </li>
+        <li>
+            <h3>Data Augmentation</h3>
+            <p>Implement more advanced augmentation techniques to improve generalization.</p>
+        </li>
+        <li>
+            <h3>Hyperparameter Tuning</h3>
+            <p>Explore different learning rates, batch sizes, and other hyperparameters.</p>
+        </li>
+            <h3>Increase Dataset Size</h3>
+            <p>Collect more labeled data to improve the model's ability to generalize.</p>
+        </li>
+            <h3>Feature Engineering</h3>
+            <p>Explore additional features or pre-processing techniques that might enhance performance.</p>
+        </li>
+    </ul>
+
+<p>By addressing these areas, the model's accuracy and reliability can be improved, bringing it closer to a deployable solution for real-world applications.</p>
+
+
+    </section>
+
+    <!-- JavaScript for custom cursor interaction -->
+    <script src="script.js"></script>
+    <script>
+        // JavaScript to handle expanding the code snippet
+        document.getElementById('expand-code').addEventListener('click', function(e) {
+            e.preventDefault();
+            document.querySelector('.code-snippet').classList.toggle('expanded');
+        });
+    </script>
+
+</body>
+</html>
