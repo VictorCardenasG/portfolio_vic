@@ -534,22 +534,110 @@ html, body {
     text-align: right;
 }
 
+/* Base about-section styles (mobile-first) */
+.about-section {
+    display: flex;
+    flex-direction: column; /* Default to column for mobile */
+    padding: 2rem;
+    gap: 2rem;
+    padding-top: 160px; /* Account for fixed header */
+}
+
+.about-text, .about-image {
+    width: 100%; /* Full width on mobile */
+}
+
+.about-image img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    object-fit: cover;
+}
+
+/* CV Page Specific Styles */
+.cv-container {
+    padding-top: 100px;
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+}
+
+.cv-content {
+    max-width: 600px;
+    padding: 2rem;
+    margin: 0 auto;
+}
+
+.cv-button {
+    display: inline-block;
+    margin: 2rem 0;
+    padding: 15px 30px;
+    background-color: #fff;
+    color: #000;
+    text-decoration: none;
+    border-radius: 5px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    border: 2px solid #fff;
+}
+
+.cv-button:hover {
+    background-color: transparent;
+    color: #fff;
+}
+
+.note {
+    font-size: 0.9rem;
+    color: #aaa;
+    margin-top: -1rem;
+}
+
+/* Active nav link */
+nav a.active {
+    border-bottom: 2px solid #fff;
+}
+
+@media (min-width: 769px) {
+    .about-section {
+        flex-direction: row; /* Switch to row for desktop */
+        justify-content: space-between;
+        align-items: center;
+        padding: 4rem;
+    }
+    
+    .about-text, .about-image {
+        width: 48%; /* Side by side on desktop */
+    }
+}
+  
+
 /* Hide mobile layout by default */
 .layout-mobile {
     display: none;
 }
 
-/* Show mobile layout on small screens, hide desktop */
+/* Mobile layout */
 @media (max-width: 768px) {
-        .layout-desktop {
-            display: none;
-        }
-    
-        .layout-mobile {
-            display: block;
-        }
+    .layout-desktop {
+        display: none;
     }
     
+    .layout-mobile {
+        display: block;
+    }
+    
+    /* These are already set in the base styles, but can be repeated here if needed */
+    .about-section {
+        flex-direction: column;
+        padding: 2rem;
+    }
+    
+    .about-text, .about-image {
+        width: 100%;
+    }
+}
 
     .mobile-header {
         text-align: center;
@@ -633,7 +721,8 @@ html, body {
     position: relative;
     cursor: pointer;
     z-index: 2001; /* above menu overlay */
-    margin-top: 1.5rem;  /* ← add this */
+    margin-top: 2.5rem;  /* ← add this */
+    margin-left: 2.5rem;  /* ← add this */
     }
     
     .hamburger span {
@@ -663,9 +752,9 @@ html, body {
         left: 0;
         height: 100vh;
         width: 100%;
-        background-color: rgba(0, 47, 167, 0.75); /* RGB + opacity */
-        backdrop-filter: blur(8px); /* ← frosted glass effect */
-        -webkit-backdrop-filter: blur(8px);       /* Safari support */
+        background-color: rgba(0, 47, 167, 1.0); /* RGB + opacity */
+        /*backdrop-filter: blur(8px);  ← frosted glass effect */
+        /*-webkit-backdrop-filter: blur(8px);       /* Safari support */
         display: none;
         flex-direction: column;
         justify-content: center;
@@ -700,3 +789,56 @@ html, body {
 }
 
 
+/* Base mobile styles */
+.layout-desktop {
+    display: block;
+}
+
+.layout-mobile {
+    display: none;
+}
+
+.about-section {
+    display: flex;
+    flex-direction: column;
+    padding: 2rem;
+    padding-top: 160px;
+}
+
+.mobile-about-section {
+    padding: 2rem;
+    padding-top: 120px;
+    text-align: center;
+}
+
+.mobile-project-image {
+    width: 100%;
+    max-width: 300px;
+    margin: 0 auto 20px;
+    border-radius: 8px;
+}
+
+/* Desktop styles */
+@media (min-width: 769px) {
+    .about-section {
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+        padding: 4rem;
+    }
+    
+    .about-text, .about-image {
+        width: 48%;
+    }
+}
+
+/* Mobile styles */
+@media (max-width: 768px) {
+    .layout-desktop {
+        display: none;
+    }
+    
+    .layout-mobile {
+        display: block;
+    }
+}
