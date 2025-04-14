@@ -1,6 +1,15 @@
 
 
 /* Global styles */
+
+.layout-mobile {
+    display: none;
+}
+
+.layout-desktop {
+    display: block;
+}
+
 @font-face {
     font-family: 'Scto Grotesk A';
     src: url('../fonts/SctoGroteskA-Regular.woff2') format('woff2'),
@@ -532,22 +541,15 @@ html, body {
 
 /* Show mobile layout on small screens, hide desktop */
 @media (max-width: 768px) {
-    .layout-desktop {
-        display: none;
+        .layout-desktop {
+            display: none;
+        }
+    
+        .layout-mobile {
+            display: block;
+        }
     }
-
-    .layout-mobile {
-        display: block;
-    }
-
-       /* Mobile Layout Styles */
-       .layout-desktop {
-        display: none;
-    }
-
-    .layout-mobile {
-        display: block;
-    }
+    
 
     .mobile-header {
         text-align: center;
@@ -612,7 +614,6 @@ html, body {
         margin: 0;
     }
 }
-
 
 @media (max-width: 480px) {
     .welcome-section h1 {
