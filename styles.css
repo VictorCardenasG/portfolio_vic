@@ -1,3 +1,5 @@
+
+
 /* Global styles */
 @font-face {
     font-family: 'Scto Grotesk A';
@@ -522,4 +524,105 @@ html, body {
 .footer-right {
     text-align: right;
 }
+
+/* Hide mobile layout by default */
+.layout-mobile {
+    display: none;
+}
+
+/* Show mobile layout on small screens, hide desktop */
+@media (max-width: 768px) {
+    .layout-desktop {
+        display: none;
+    }
+
+    .layout-mobile {
+        display: block;
+    }
+
+       /* Mobile Layout Styles */
+       .layout-desktop {
+        display: none;
+    }
+
+    .layout-mobile {
+        display: block;
+    }
+
+    .mobile-header {
+        text-align: center;
+        padding: 2rem 1rem;
+    }
+
+    .mobile-header h1 {
+        font-family: 'Newake-Font-Demo', sans-serif;
+        font-size: 32px;
+        margin-bottom: 1rem;
+    }
+
+    .mobile-header p {
+        font-size: 16px;
+        max-width: 90%;
+        margin: 0 auto;
+        color: #ccc;
+    }
+
+    #typing-text-mobile {
+        font-family: 'Scto Grotesk A', sans-serif;
+        font-size: 16px;
+        width: 90%;
+        margin: 1rem auto;
+        white-space: normal;
+        overflow: hidden;
+        border-right: 0.15em solid white;
+        animation: typingMobile 10s steps(120, end) infinite, blink-caret-mobile 0.75s step-end infinite;
+        display: block;
+        text-align: center;
+    }
+
+    @keyframes typingMobile {
+        0%, 100% { width: 0; }
+        10%, 90% { width: 100%; }
+    }
+
+    @keyframes blink-caret-mobile {
+        from, to { border-color: transparent; }
+        50% { border-color: white; }
+    }
+
+    .mobile-projects {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+        padding: 1rem;
+    }
+
+    .mobile-project-card {
+        width: 100%;
+        height: auto;
+        border-radius: 0;
+        overflow: hidden;
+    }
+
+    .mobile-project-card img {
+        width: 100%;
+        height: auto;
+        display: block;
+        border-radius: 0;
+        margin: 0;
+    }
+}
+
+
+@media (max-width: 480px) {
+    .welcome-section h1 {
+        font-size: 28px;
+    }
+
+    .button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
+}
+
 

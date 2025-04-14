@@ -1,58 +1,84 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portfolio</title>
-    <link rel="stylesheet" href="styles.css">
-</head>
-<body>
-    <!-- Add custom cursor element -->
-    <div class="custom-cursor"></div>
 
-    <!-- First row -->
-    <header>
-        <div class="logo">
-            <img src="logo.png" alt="Logo">
-        </div>
-        <nav>
-            <ul>
-                <li><a href="about.html">About</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="cv.html">CV</a></li>
-            </ul>
-        </nav>
-    </header>
+<!-- DESKTOP VERSION -->
+<div class="layout-desktop">
+        <!DOCTYPE html>
+        <html lang="en">
+        <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>Portfolio</title>
+            <link rel="stylesheet" href="styles.css">
+        </head>
+        <body>
+            <!-- Add custom cursor element -->
+            <div class="custom-cursor"></div>
+        
+            <!-- First row -->
+            <header>
+                <div class="logo">
+                    <img src="logo.png" alt="Logo">
+                </div>
+                <nav>
+                    <ul>
+                        <li><a href="about.html">About</a></li>
+                        <li><a href="#projects">Projects</a></li>
+                        <li><a href="cv.html">CV</a></li>
+                    </ul>
+                </nav>
+            </header>
+        
+            <!-- Second row -->
+            <section class="welcome-section">
+                <h1>Welcome</h1>
+                <p id="typing-text">My name is Víctor. I have a passion for aesthetics, creation and improving people's lives through design.</p>
+                <a href="#projects" class="button">Check My Projects</a>
+            </section>
+        
+            <!-- Projects Section -->
+            <section id="projects" class="projects-section">
+                <div class="projects-grid">
+                    <a href="project1.html" class="project-item" style="background-image: url('project_1.png');"></a>
+                    <a href="project2.html" class="project-item" style="background-image: url('project_2.png');"></a>
+                    <a href="project3.html" class="project-item" style="background-image: url('project_3.png');"></a>
+                    <a href="project4.html" class="project-item" style="background-image: url('project_4.png');"></a>
+                    <a href="project5.html" class="project-item" style="background-image: url('project_5.png');"></a>
+                    <a href="project6.html" class="project-item" style="background-image: url('project_6.png');"></a>
+                </div>
+            </section>
+        
+            <footer class="footer">
+                <div class="footer-content">
+                    <span class="footer-left"></span>
+                    <span class="footer-center">Víctor Cárdenas 2025</span>
+                    <span class="footer-right"></span>
+                </div>
+            </footer>
+        
+        
+            <!-- JavaScript for custom cursor interaction -->
+            <script src="script.js"></script>
+        </body>
+        </html>
+</div>
 
-    <!-- Second row -->
-    <section class="welcome-section">
-        <h1>Welcome</h1>
-        <p id="typing-text">My name is Víctor. I have a passion for aesthetics, creation and improving people's lives through design.</p>
-        <a href="#projects" class="button">Check My Projects</a>
+<!-- MOBILE VERSION -->
+<div class="layout-mobile">
+    <!-- This will be the mobile-specific design -->
+    <!-- Placeholder -->
+    <section class="mobile-header">
+      <h1>Hi! I'm Victor</h1>
+      <p id="typing-text-mobile">
+        My name is Víctor. I have a passion for aesthetics, creation and improving people's lives through design.</p>      
+    <!-- Add mobile navigation or condensed project list -->
     </section>
+    <div class="mobile-projects">
+        <a href="project1.html" class="mobile-project-card">
+          <img src="project_1.png" alt="Project 1">
+        </a>
+        <a href="project2.html" class="mobile-project-card">
+          <img src="project_2.png" alt="Project 2">
+        </a>
+        <!-- Repeat for other projects -->
+      </div>
+</div>
 
-    <!-- Projects Section -->
-    <section id="projects" class="projects-section">
-        <div class="projects-grid">
-            <a href="project1.html" class="project-item" style="background-image: url('project_1.png');"></a>
-            <a href="project2.html" class="project-item" style="background-image: url('project_2.png');"></a>
-            <a href="project3.html" class="project-item" style="background-image: url('project_3.png');"></a>
-            <a href="project4.html" class="project-item" style="background-image: url('project_4.png');"></a>
-            <a href="project5.html" class="project-item" style="background-image: url('project_5.png');"></a>
-            <a href="project6.html" class="project-item" style="background-image: url('project_6.png');"></a>
-        </div>
-    </section>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <span class="footer-left"></span>
-            <span class="footer-center">Víctor Cárdenas 2025</span>
-            <span class="footer-right"></span>
-        </div>
-    </footer>
-
-
-    <!-- JavaScript for custom cursor interaction -->
-    <script src="script.js"></script>
-</body>
-</html>
