@@ -576,11 +576,24 @@ html, body {
         margin: 1rem auto;
         white-space: normal;
         overflow: hidden;
-        border-right: 0.15em solid white;
-        animation: typingMobile 10s steps(120, end) infinite, blink-caret-mobile 0.75s step-end infinite;
         display: block;
         text-align: center;
+        position: relative; /* Required for positioning ::after */
+        animation: typingMobile 5s steps(60, end) infinite normal both;
     }
+
+    #typing-text-mobile::after {
+        content: "";
+        position: absolute;
+        right: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 1px;
+        height: 50%;
+        background-color: white;
+        animation: blink-caret-mobile 0.75s step-end infinite;
+    }
+    
 
     @keyframes typingMobile {
         0%, 100% { width: 0; }
@@ -588,9 +601,9 @@ html, body {
     }
 
     @keyframes blink-caret-mobile {
-        from, to { border-color: transparent; }
-        50% { border-color: white; }
-    }
+        from, to { opacity: 0; }
+        50% { opacity: 1; }
+    }    
 
     .mobile-projects {
         display: grid;
@@ -613,7 +626,7 @@ html, body {
         border-radius: 0;
         margin: 0;
     }
-}
+
 
 @media (max-width: 480px) {
     .welcome-section h1 {
