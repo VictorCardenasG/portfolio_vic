@@ -1,6 +1,14 @@
 // Get the custom cursor element
 const cursor = document.querySelector('.custom-cursor');
 
+function toggleMenu() {
+    const menu = document.getElementById('mobileMenu');
+    const icon = document.getElementById('hamburgerIcon');
+    menu.classList.toggle('show');
+    icon.classList.toggle('open');
+  }
+  
+
 // Track mouse movement
 document.addEventListener('mousemove', (e) => {
     // Update cursor position
