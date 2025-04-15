@@ -645,7 +645,7 @@ nav a.active {
         display: flex;
         justify-content: center;
         align-items: center;
-        padding-top: 60px; /* Space for navbar */
+        padding-top: 20px; /* Space for navbar */
     }
 
     .original-size-gif {
