@@ -63,39 +63,41 @@
 
 <!-- MOBILE VERSION -->
 <div class="layout-mobile">
-    <!-- This will be the mobile-specific design -->
-    <div class="mobile-navbar">
-        <div class="hamburger" id="hamburgerIcon" onclick="toggleMenu()">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <ul class="mobile-nav-links" id="mobileMenu">
-          <li><a href="about.html">About</a></li>
-          <li><a href="#projects">Projects</a></li>
-          <li><a href="cv.html">CV</a></li>
-        </ul>
+  <!-- Mobile Navigation (hidden by default) -->
+  <div class="mobile-navbar">
+      <div class="hamburger" id="hamburgerIcon" onclick="toggleMenu()">
+        <span></span>
+        <span></span>
+        <span></span>
       </div>
-    <!-- Modified Welcome Section with GIF -->
-    <section class="mobile-header">
-      <div class="gif-wrapper">
-        <img src="gif_sitio_vic.gif" alt="Victor's Introduction" class="hero-gif">
+      <ul class="mobile-nav-links" id="mobileMenu">
+        <li><a href="about.html">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="cv.html">CV</a></li>
+      </ul>
+  </div>
+  
+  <!-- Full-screen GIF section -->
+  <section class="gif-fullscreen">
+      <div class="gif-container">
+          <img src="gif_sitio_vic.gif" alt="Victor's Introduction" class="original-gif">
       </div>
-    </section>
-    </section>
-    <div class="mobile-projects">
-        <a href="project2.html" class="mobile-project-card">
-          <img src="project_2.png" alt="Project 2">
-        </a>
-        <a href="project3.html" class="mobile-project-card">
-            <img src="project_3.png" alt="Project 3">
-          </a>      
-          <a href="project4.html" class="mobile-project-card">
-            <img src="project_4.png" alt="Project 4">
-          </a> 
-          <a href="project1.html" class="mobile-project-card">
-            <img src="project_1.png" alt="Project 1">
-          </a>
-    </div>
+  </section>
+  
+  <!-- Projects Grid (will appear after scrolling) -->
+  <div class="mobile-projects">
+      <a href="project2.html" class="mobile-project-card">
+        <img src="project_2.png" alt="Project 2">
+      </a>
+      <a href="project3.html" class="mobile-project-card">
+          <img src="project_3.png" alt="Project 3">
+      </a>      
+      <a href="project4.html" class="mobile-project-card">
+          <img src="project_4.png" alt="Project 4">
+      </a> 
+      <a href="project1.html" class="mobile-project-card">
+          <img src="project_1.png" alt="Project 1">
+      </a>
+  </div>
 </div>
 
