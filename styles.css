@@ -669,7 +669,7 @@ nav a.active {
         justify-content: center;
         align-items: center;
         width: 100vw;
-        height: 70vh; /* Takes majority of screen height */
+        height: 50vh; /* Takes majority of screen height */
         padding: 0;
         margin: 0;
         overflow: hidden;
