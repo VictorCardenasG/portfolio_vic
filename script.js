@@ -55,15 +55,3 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     });
 });
-
-// Add to your script.js
-let gifSeen = false;
-
-window.addEventListener('scroll', () => {
-    if (window.scrollY > 50 && !gifSeen) {
-        document.querySelector('.gif-fullscreen').style.opacity = '0';
-        document.querySelector('.gif-fullscreen').style.pointerEvents = 'none';
-        document.body.style.overflow = 'auto';
-        gifSeen = true;
-    }
-});
