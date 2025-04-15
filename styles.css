@@ -628,7 +628,6 @@ nav a.active {
         display: block;
     }
     
-    /* These are already set in the base styles, but can be repeated here if needed */
     .about-section {
         flex-direction: column;
         padding: 2rem;
@@ -659,7 +658,7 @@ nav a.active {
 
     #typing-text-mobile {
         font-family: 'Scto Grotesk A', sans-serif;
-        font-size: 24px;
+        font-size: 20px;
         width: 90%;
         margin: 1rem auto;
         white-space: normal;
@@ -677,7 +676,7 @@ nav a.active {
         top: 50%;
         transform: translateY(-50%);
         width: 1px;
-        height: 50%;
+        height: 20%;
         background-color: white;
         animation: blink-caret-mobile 0.75s step-end infinite;
     }
@@ -721,8 +720,8 @@ nav a.active {
     position: relative;
     cursor: pointer;
     z-index: 2001; /* above menu overlay */
-    margin-top: 2.5rem;  /* ← add this */
-    margin-left: 2.5rem;  /* ← add this */
+    margin-top: 2rem;  /* ← add this */
+    margin-left: 2rem;  /* ← add this */
     }
     
     .hamburger span {
