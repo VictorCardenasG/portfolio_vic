@@ -640,7 +640,7 @@ nav a.active {
 
     /* Simplest CSS solution */
     .gif-viewport {
-        height: 150vh; /* Makes container taller than screen */
+        height: 100vh; /* Makes container taller than screen */
         background: #000; /* Black background */
         display: flex;
         justify-content: center;
@@ -651,7 +651,7 @@ nav a.active {
     .original-size-gif {
         width: auto; 
         height: auto;
-        max-width: 100%;
+        max-width: 80%;
         max-height: 80vh; /* Prevents GIF from touching edges */
     }
     /* Remove typing text styles if no longer needed */
