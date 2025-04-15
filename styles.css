@@ -662,6 +662,35 @@ nav a.active {
         text-align: center;
     }
 
+
+        /* Mobile GIF Styles */
+    .gif-wrapper {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 100vw;
+        height: 70vh; /* Takes majority of screen height */
+        padding: 0;
+        margin: 0;
+        overflow: hidden;
+    }
+    
+    .hero-gif {
+        width: auto;
+        height: 100%;
+        max-width: 100%;
+        object-fit: contain;
+    }
+    
+    /* Optional: Add subtle animation when loaded */
+    @keyframes fadeInScale {
+        from { opacity: 0; transform: scale(0.95); }
+        to { opacity: 1; transform: scale(1); }
+    }
+    
+    .hero-gif {
+        animation: fadeInScale 0.8s ease-out forwards;
+    }
     /* Remove typing text styles if no longer needed */
     #typing-text-mobile {
         display: none;
