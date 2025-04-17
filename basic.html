@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Basic Agency Effects</title>
+  <style>
+    /* Image Reveal */
+    .image-reveal {
+      position: relative;
+      height: 80vh;
+      overflow: hidden;
+    }
+    
+    .image-reveal img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      clip-path: polygon(0 0, 100% 0, 100% 0, 0 0);
+      transition: clip-path 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    
+    .image-reveal.in-view img {
+      clip-path: polygon(0 0, 100% 0, 100% 100%, 0 100%);
+    }
+  </style>
+</head>
+<body>
+  <!-- Horizontal Scroll Section -->
+  <div class="horizontal-scroll">
+    <div class="scroll-wrapper">
+      <section class="scroll-section">
+        <div class="image-reveal">
+          <img src="project_1.png" alt="Project 1">
+        </div>
+      </section>
+      <section class="scroll-section">
+        <div class="image-reveal">
+          <img src="project_2.png" alt="Project 2">
+        </div>
+      </section>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <script>
+    // Horizontal Scroll
+    gsap.to(".scroll-wrapper", {
+      x: () => -window.innerWidth,
+      ease: "none",
+      scrollTrigger: {
+        trigger: ".horizontal-scroll",
+        pin: true,
+        scrub: 1,
+        end: "+=2000"
+      }
+    });
+
+    // Image Reveal
+    document.querySelectorAll('.image-reveal').forEach((el, i) => {
+      ScrollTrigger.create({
+        trigger: el,
+        start: "top 70%",
+        onEnter: () => el.classList.add('in-view'),
+        once: true
+      });
+    });
+  </script>
+</body>
+</html>

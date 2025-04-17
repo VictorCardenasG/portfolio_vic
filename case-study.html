@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Title | Victor Cárdenas</title>
+  <link rel="stylesheet" href="styles_basic.css">
+  <!-- GSAP for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <!-- Inter Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
+</head>
+<body>
+  <!-- Loading Overlay -->
+  <div class="loader">
+    <div class="loader__inner"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav__logo">VC</div>
+    <div class="nav__menu">
+      <span class="nav__item">Work</span>
+      <span class="nav__item">About</span>
+      <span class="nav__item">Contact</span>
+    </div>
+  </nav>
+
+  <!-- Case Study Header -->
+  <header class="case-header">
+    <div class="case-header__content">
+      <h1 class="case-header__title">
+        <span class="line">Emotion Classification</span>
+        <span class="line">Using Deep Learning</span>
+      </h1>
+      <div class="case-header__meta">
+        <div class="case-meta__item">
+          <h4>Role</h4>
+          <p>Data Engineer, Data Scientist</p>
+        </div>
+        <div class="case-meta__item">
+          <h4>Year</h4>
+          <p>2023</p>
+        </div>
+        <div class="case-meta__item">
+          <h4>Client</h4>
+          <p>Client Name</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Image -->
+  <div class="case-hero">
+    <img src="project_4.png" alt="Project Hero Image" class="case-hero__image">
+  </div>
+
+  <!-- Case Study Content -->
+  <main class="case-content">
+    <!-- Introduction Section -->
+    <section class="case-section">
+      <div class="case-section__header">
+        <h2 class="case-section__title">Introduction</h2>
+      </div>
+      <div class="case-section__content">
+        <p class="case-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+        <p class="case-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+      </div>
+    </section>
+
+    <!-- Two Column Layout -->
+    <section class="case-section case-section--two-column">
+      <div class="case-column">
+        <h3 class="case-column__title">The Challenge</h3>
+        <p class="case-text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam.</p>
+      </div>
+      <div class="case-column">
+        <h3 class="case-column__title">The Solution</h3>
+        <p class="case-text">Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.</p>
+      </div>
+    </section>
+
+    <!-- Full Width Image -->
+    <div class="case-image">
+      <img src="project_detail_1.jpg" alt="Project Detail">
+    </div>
+
+    <!-- Process Section -->
+    <section class="case-section">
+      <div class="case-section__header">
+        <h2 class="case-section__title">Process</h2>
+      </div>
+      <div class="case-section__content">
+        <p class="case-text">Our approach involved several key phases:</p>
+        
+        <div class="case-process">
+          <div class="case-process__item">
+            <h4 class="case-process__step">01</h4>
+            <h3 class="case-process__title">Data Collection</h3>
+            <p class="case-process__desc">Gathering and cleaning the necessary datasets from multiple sources.</p>
+          </div>
+          <div class="case-process__item">
+            <h4 class="case-process__step">02</h4>
+            <h3 class="case-process__title">Exploratory Analysis</h3>
+            <p class="case-process__desc">Identifying patterns and insights through statistical analysis.</p>
+          </div>
+          <div class="case-process__item">
+            <h4 class="case-process__step">03</h4>
+            <h3 class="case-process__title">Model Development</h3>
+            <p class="case-process__desc">Building and training machine learning models.</p>
+          </div>
+          <div class="case-process__item">
+            <h4 class="case-process__step">04</h4>
+            <h3 class="case-process__title">Implementation</h3>
+            <p class="case-process__desc">Deploying the solution into production environment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="case-section case-section--dark">
+      <div class="case-section__header">
+        <h2 class="case-section__title">Results</h2>
+      </div>
+      <div class="case-section__content">
+        <div class="case-stats">
+          <div class="case-stat">
+            <h3 class="case-stat__value">95%</h3>
+            <p class="case-stat__label">Accuracy</p>
+          </div>
+          <div class="case-stat">
+            <h3 class="case-stat__value">4x</h3>
+            <p class="case-stat__label">Faster Processing</p>
+          </div>
+          <div class="case-stat">
+            <h3 class="case-stat__value">10K</h3>
+            <p class="case-stat__label">Daily Predictions</p>
+          </div>
+        </div>
+        <p class="case-text">The implemented solution delivered significant improvements in processing time and accuracy, enabling the client to make data-driven decisions with confidence.</p>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="case-gallery">
+      <div class="case-gallery__item">
+        <img src="project_gallery_1.jpg" alt="Project Gallery Image 1">
+      </div>
+      <div class="case-gallery__item">
+        <img src="project_gallery_2.jpg" alt="Project Gallery Image 2">
+      </div>
+    </section>
+
+    <!-- Next Project CTA -->
+    <section class="case-cta">
+      <div class="case-cta__content">
+        <h3 class="case-cta__title">Next Project</h3>
+        <h2 class="case-cta__project">Project Name</h2>
+        <a href="project2.html" class="case-cta__link">View Project →</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__content">
+      <div class="footer__left">
+        <h3>Victor Cárdenas</h3>
+        <p>Data Engineer & Scientist</p>
+      </div>
+      <div class="footer__right">
+        <div class="footer__links">
+          <a href="mailto:hello@victor.com" class="footer__link">Email</a>
+          <a href="#" class="footer__link">LinkedIn</a>
+          <a href="#" class="footer__link">GitHub</a>
+        </div>
+        <p class="footer__copyright">© 2023 Victor Cárdenas. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script_basic.js"></script>
+  <script src="case-study.js"></script>
+</body>
+</html>
