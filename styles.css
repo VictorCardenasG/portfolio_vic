@@ -48,7 +48,7 @@
   }
   
   .nav__logo-image {
-    height: 2.4rem; /* Adjust to match your design */
+    height: 2.4rem; 
     width: auto; /* Maintains aspect ratio */
     transition: opacity 0.3s ease;
   }
@@ -113,24 +113,30 @@
   
 /* ===== Scroller ===== */
 .scroller {
-    height: 400vh; /* Increased to accommodate the staggered items */
-  }
-  
-  .scroller__item {
-    height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    position: sticky;
-    /* Remove top: 0 and we'll control this with GSAP */
-  }
-  
+  height: auto; /* Changed from 400vh */
+  padding: 20vh 0; /* Add some vertical spacing */
+}
+
+.scroller__item {
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
   .scroller__item p {
     /* Add some styling to make the text more prominent */
     font-size: clamp(2.5rem, 8vw, 8rem);
     font-weight: 300;
     line-height: 1;
   }
+
+@media (max-width: 768px) {
+  .scroller__item {
+    height: 80vh;
+  }
+}
+
   /* Cursor Trailer */
 .cursor-trailer {
     position: fixed;
@@ -200,6 +206,8 @@
     position: relative;
     height: 70vh; /* Fixed height for projects */
     min-width: 0; /* Prevent flex item overflow */
+    color: white; /* Set base color for all text in project */
+    text-decoration: none; /* Remove underline if present */
   }
   
   .project__image {
@@ -221,7 +229,7 @@
     left: 0;
     right: 0;
     padding: 2rem;
-    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
+    background: linear-gradient(to top, rgba(255, 255, 255, 0), transparent);
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -236,10 +244,30 @@
     transform: translateY(0);
   }
   
+  .project__info h3,
+  .project__info p {
+      color: white; /* Explicitly set text color to white */
+  }
+
+  /* Optional: Add transition for smooth effect */
+  .project__info h3,
+  .project__info p {
+      transition: color 0.3s ease;
+  }
+
+  /* Force white color on hover (in case any parent styles try to override) */
+  .project:hover .project__info h3,
+  .project:hover .project__info p {
+      color: white !important;
+      opacity: 1; 
+  }
+
+
+
   /* Mobile Adaptation */
   @media (max-width: 768px) {
     .project {
-      flex: 0 0 calc(50vw - 3vw); /* 50% of viewport width minus gap */
+      flex: 0 0 calc(80vw - 3vw); /* 50% of viewport width minus gap */
     }
     
     .projects__grid {
@@ -284,6 +312,8 @@
     background: rgba(255,255,255,0.3);
     border-radius: 5px;
   }
+
+
 
 /* Loading */
 

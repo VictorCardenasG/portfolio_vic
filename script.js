@@ -1,74 +1,74 @@
 // Wait for DOM to load
 document.addEventListener('DOMContentLoaded', () => {
-    // 1. Text Reveal Animation
-    const lines = document.querySelectorAll('.line');
-    lines.forEach((line, index) => {
-      gsap.from(line, {
-        y: '100%',
-        duration: 1.2,
-        delay: index * 0.15,
-        ease: 'power3.out'
-      });
-    });
-  
-// 2. Smooth Scrolling - Alternative Dramatic Version
-const scrollerItems = document.querySelectorAll('.scroller__item');
-const itemHeight = 100; // Height in vh units for each item
-
-// Set initial states
-gsap.set(scrollerItems, { y: 100 });
-
-// Create a timeline for the scroll effect
-const scrollerTL = gsap.timeline({
-  scrollTrigger: {
-    trigger: '.scroller',
-    start: 'top top',
-    end: `+=${(scrollerItems.length - 1) * 100}%`,
-    scrub: true,
-    pin: true
-  }
-});
-
-// Add animations for each item
-scrollerItems.forEach((item, i) => {
-  // First item stays at top
-  if (i === 0) {
-    scrollerTL.to(item, { 
-      y: 0,
-      opacity: 1
-    }, 0);
-  } 
-  // Subsequent items push previous ones up
-  else {
-    scrollerTL.to(scrollerItems[i-1], {
-      y: `-=${itemHeight}`,
-      opacity: 0.7
-    }, i * 0.3);
-    
-    scrollerTL.to(item, {
-      y: 0,
-      opacity: 1
-    }, i * 0.3);
-  }
-});
-  
-    // 3. Cursor Trailer (Basic Agency style)
-    const trailer = document.createElement('div');
-    trailer.classList.add('cursor-trailer');
-    document.body.appendChild(trailer);
-  
-    document.addEventListener('mousemove', e => {
-      gsap.to(trailer, {
-        x: e.clientX,
-        y: e.clientY,
-        duration: 0.8,
-        ease: 'power2.out'
-      });
+  // 1. Text Reveal Animation
+  const lines = document.querySelectorAll('.line');
+  lines.forEach((line, index) => {
+    gsap.from(line, {
+      y: '100%',
+      duration: 1.2,
+      delay: index * 0.15,
+      ease: 'power3.out'
     });
   });
 
-  // Project Image Reveal
-gsap.utils.toArray(".project").forEach((project, i) => {
+  // 2. Optimized Smooth Scrolling
+  const scrollerItems = document.querySelectorAll('.scroller__item');
+  
+  // Set initial states
+  gsap.set(scrollerItems, { 
+    y: 100,
+    opacity: 0 
+  });
+  
+  // Create smoother animation timeline
+  scrollerItems.forEach((item, i) => {
+    ScrollTrigger.create({
+      trigger: item,
+      start: "top center",
+      end: "+=200", // Shorter scroll distance
+      scrub: 0.5, // Smoother scrubbing
+      onEnter: () => {
+        gsap.to(item, {
+          y: 0,
+          opacity: 1,
+          duration: 0.8,
+          ease: "power2.out"
+        });
+        
+        // Fade out previous item if it exists
+        if (i > 0) {
+          gsap.to(scrollerItems[i-1], {
+            opacity: 0.3,
+            duration: 0.5
+          });
+        }
+      },
+      onLeaveBack: () => {
+        gsap.to(item, {
+          y: 100,
+          opacity: 0,
+          duration: 0.5
+        });
+      }
+    });
+  });
+
+  // 3. Cursor Trailer
+  const trailer = document.createElement('div');
+  trailer.classList.add('cursor-trailer');
+  document.body.appendChild(trailer);
+
+  document.addEventListener('mousemove', e => {
+    gsap.to(trailer, {
+      x: e.clientX,
+      y: e.clientY,
+      duration: 0.8,
+      ease: 'power2.out'
+    });
+  });
+  
+  // 4. Project Image Reveal
+  gsap.utils.toArray(".project").forEach((project, i) => {
     gsap.from(project, {
       opacity: 0,
       y: 50,
@@ -98,9 +98,9 @@ gsap.utils.toArray(".project").forEach((project, i) => {
       });
     });
   });
-
-  // Remove loader when page loads
-window.addEventListener("load", () => {
+  
+  // 5. Remove loader when page loads
+  window.addEventListener("load", () => {
     gsap.to(".loader", {
       opacity: 0,
       duration: 0.6,
@@ -110,37 +110,27 @@ window.addEventListener("load", () => {
       }
     });
   });
-
-  // Horizontal Scroll for Projects
-document.addEventListener('DOMContentLoaded', () => {
-    const projectsSection = document.querySelector('.projects');
+  
+  // 6. Horizontal Scroll for Projects
+  const projectsSection = document.querySelector('.projects');
+  if (projectsSection) {
+    projectsSection.style.scrollBehavior = 'smooth';
+    projectsSection.style.scrollSnapType = 'x mandatory';
+    projectsSection.style.scrollbarWidth = 'none';
+    projectsSection.style.msOverflowStyle = 'none';
+  }
+  
+  // Navigation arrows functionality
+  const prevBtn = document.querySelector('.projects-nav__prev');
+  const nextBtn = document.querySelector('.projects-nav__next');
+  
+  if (prevBtn && nextBtn) {
+    prevBtn.addEventListener('click', () => {
+      projectsSection.scrollBy({ left: -300, behavior: 'smooth' });
+    });
     
-    if (projectsSection) {
-      // Enable smooth scrolling behavior
-      projectsSection.style.scrollBehavior = 'smooth';
-      
-      // Optional: Add scroll snapping points
-      projectsSection.style.scrollSnapType = 'x mandatory';
-      
-      // Optional: Add this if you want to hide the scrollbar
-      projectsSection.style.scrollbarWidth = 'none'; /* Firefox */
-      projectsSection.style.msOverflowStyle = 'none'; /* IE/Edge */
-    }
-    
-    // Optional: Initialize GSAP ScrollTrigger for horizontal scrolling
-    const projectsGrid = document.querySelector('.projects__grid');
-    if (projectsGrid && ScrollTrigger) {
-      gsap.to(projectsGrid, {
-        x: () => -(projectsGrid.scrollWidth - window.innerWidth),
-        ease: "none",
-        scrollTrigger: {
-          trigger: projectsSection,
-          start: "top top",
-          end: () => `+=${projectsGrid.scrollWidth - window.innerWidth}`,
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true
-        }
-      });
-    }
-  });
+    nextBtn.addEventListener('click', () => {
+      projectsSection.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+  }
+});
