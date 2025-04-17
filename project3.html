@@ -1,446 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Octavio Navarro Design</title>
-    <link rel="stylesheet" href="project_1_styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Title | Victor Cárdenas</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- GSAP for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <!-- Inter Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
 </head>
 <body>
-    <!-- Add custom cursor element -->
-    <div class="custom-cursor"></div>
+  <!-- Loading Overlay -->
+  <div class="loader">
+    <div class="loader__inner"></div>
+  </div>
 
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <a href="index.html"><img src="logo_b.png" alt="Logo"></a>
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="logo_vic.png" alt="Victor Cárdenas Logo" class="nav__logo-image">
+    </a>
+    <div class="nav__menu">
+      <a href="index.html" class="nav__item">Work</a>
+      <a href="about.html" class="nav__item">About</a>
+      <a href="cv.html" class="nav__item">CV</a>
+      <a href="contact.html" class="nav__item">Contact</a>
+    </div>
+  </nav>
+  
+  <!-- Case Study Header -->
+  <header class="case-header">
+    <div class="case-header__content">
+      <h1 class="case-header__title">
+        <span class="line">Emotion Classification</span>
+        <span class="line">Using Deep Learning</span>
+      </h1>
+      <div class="case-header__meta">
+        <div class="case-meta__item">
+          <h4>Role</h4>
+          <p>Data Scientist</p>
         </div>
-        <nav>
-            <ul>
-                <li><a href="about.html">About</a></li>
-                <li><a href="index.html#projects.html">Projects</a></li>
-                <li><a href="cv.html">CV</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Project Content -->
-    <section class="project-content">
-        <h1>Trust as the Center of UX: A Website for Art Appraiser Octavio Navarro</h1>
-        <p>Focusing on creating a seamless experience for both art collectors and artists seeking professional valuation services.</p>
-
-            <img src="heroimage_octavio.png" alt="ON Moodboard" class="project-image">
-
-        <p><strong>My role in the project:</strong> UX|UI Designer</p>
-        <p><strong>Tasks:</strong> Conducting user interviews, developing prototypes, reviewing through usability studies, building iterations, website and interface design.</p>
-        <p><strong>Project Duration:</strong> May 2022 - July 2022.</p>
-
-    <section id="pipeline-diagram" class="project-section">
-        <h2>Project Stages</h2>
-        <div class="pipeline-diagram">
-	    <div class="stage" data-target="project_overview">1. Project Overview</div>
-            <div class="stage" data-target="understanding_user">2. Understanding the User</div>
-            <div class="stage" data-target="starting_design">3. Starting the Design</div>
-            <div class="stage" data-target="refining_design">4. Refining the Design</div>
-            <div class="stage" data-target="takeaways">5. Takeaways and Next Steps</div>
-   
+        <div class="case-meta__item">
+          <h4>Year</h4>
+          <p>2025</p>
         </div>
+        <div class="case-meta__item">
+          <h4>Client</h4>
+          <p>Western Institute of Higher Education</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Image -->
+  <div class="case-hero">
+    <img src="project_4.png" alt="Project Hero Image" class="case-hero__image">
+  </div>
+
+  <!-- Case Study Content -->
+  <main class="case-content">
+    <!-- Introduction Section -->
+    <section class="case-section">
+      <div class="case-section__header">
+        <h2 class="case-section__title">Introduction</h2>
+      </div>
+      <div class="case-section__content">
+        <p class="case-text">The objective of this project is to develop a deep learning model that can classify human emotions from images. The model is trained on a dataset of facial images categorized into six emotion classes: Anger, Fear, Happy, Neutral, Sad, and Surprise. The project utilizes a convolutional neural network (CNN) architecture to achieve this task, leveraging the ResNet-152 backbone for feature extraction.</p>
+      </div>
     </section>
 
-        <!-- Understanding the User -->
-        <section id="understanding_user" class="project-section">
-         <h2>Problem Definition</h2>
-         <p>This site must showcase the new brand’s unique approach to art appraisal, with special focus on modern and contemporary art. Being a new brand, it is fundamental to build confidence and trust in potential customers throughout a transparent method, as well an easy-reach user experience; visuals must express the professional working method of M.A. Octavio Navarro as well as his friendly reach towards clients. </p>
-
-        <!-- Understanding the User -->
-        <section id="understanding_user" class="project-section">
-            <h2>Primary User Research</h2>
-            <p>In order to understand users needs and concerns I did <strong> 10 interviews and 20 surveys </strong>. Figuring out how to build a strong sense of trust and providing with a comfortable navigation where my two main goals.</p>
-
-            <p>The following are some of the questions asked during the interviews / surveys:</p>
-
-<div class="card-container">
-        <div class="card blue">
-            <h3>General Questions</h3>
-            <p>How often do you engage with art appraisers?</p>
-            <p>What services do you seek from an art appraiser?</p>
-        </div>
-        <div class="card pink">
-            <h3>Website Questions</h3>
-            <p>What specific information would you like to find easily when navigating?</p>
-            <p>What features or design elements make a website trustworthy in your opinion?</p>
-        </div>
-        <div class="card orange">
-            <h3>Trust and User Rapport Questions</h3>
-            <p>What is your preferred method of contact (e.g., email, phone, chat)?</p>
-            <p>What factors contribute to a sense of trustworthiness the website?</p>
-        </div>
-    </div>
-
-        </section>
-
-            <p>Below some of the data collected after this stage.</p>
-
-<ul class="regular-list">
-        <li>
-            <h3>Demographics</h3>
-            <p>40% of interviewees are <span class="highlight">art collectors</span>, 30% are <span class="highlight">artists</span>, and 30% are <span class="highlight">gallery owners</span> or art dealers.</p>
-            <p>70% have engaged with art appraisers more than once in the past year.</p>
-            <p><span class="highlight">40%</span> of users consider themselves <span class="highlight">knowledgeable</span> about art appraisals.
-</p>
-            <p><span class="highlight">25%</span> are new to using art appraisers and would appreciate <span class="highlight">guidance</span> when looking for one.</p>
-        </li>
-        <li>
-            <h3>Website Expectations</h3>
-            <p>83% expect to find <span class="highlight_2">clear information about appraisal services and fees</span>.</p>
-            <p>75% want a <span class="highlight_2">detailed FAQ section</span> to address common questions about the appraisal process.</p>
-            <p>67% of users desire an <span class="highlight_2">online appraisal request</span> form to streamline the initial contact process.</p>
-            <p>50% would like to see an <span class="highlight_2">educational blog</span> or resources about art valuation and market trends.</p>
-            <p>70% prefer a <span class="highlight_2">straightforward menu layout</span> with clear categories such as "Services," "About Us," "Contact," and "Testimonials."</p>
-        </li>
-        <li>
-            <h3>Trust and Credibility</h3>
-            <p>72% consider <span class="highlight_3">client testimonials and reviews</span> critical to establishing trust.</p>
-            <p>80% want to see <span class="highlight_3">credentials and certifications</span> of the appraiser prominently displayed</p>
-            <p>54% find it important to view a <span class="highlight_3">portfolio</span> of past appraisals or case studies to gauge expertise.</p>
-            <p>70% feel that <span class="highlight_3">ongoing communication and transparency</span> are key factors in building long-term relationships with appraisers.</p>
-        </li>
-        <li>
-            <h3>Communication and Support
-</h3>
-            <p>55% prefer <span class="highlight_4">whatsapp or email</span> as the primary method of communication</p>
-            <p>41% are interested in <span class="highlight_4">booking appointments</span> directly through the website.</p>
-            <p>60% value having a dedicated support section with clear <span class="highlight_4">contact information and response times.</span></p>
-        </li>
-    </ul>
-
-
-	    <h2>User Personas</h2>
-            <p>Through this research, I gained valuable insights into the diverse backgrounds and motivations of individuals who interact with art appraisers. Analyzing this data allowed me to identify key trends and commonalities, which I used to 1) expand on the two main segments for our target audience and 2) create detailed user personas representing the aforementioned segments.</p>
-
-
-<div class="container">
-    <div class="characters">
-        <img src="art_collector.png" alt="Character Image">
-        <h2>Art Collectors</h2>
-        <p>These users are primarily focused on accurately valuing and insuring their collections. They emphasize the importance of trust and credibility in appraisers and value educational resources to stay informed about market trends.</p>
-    </div>
-    <div class="characters">
-        <img src="artist.png" alt="Character Image">
-        <h2>Emerging Artists</h2>
-        <p>These individuals are keen on understanding the value of their work and establishing a presence in the art market. They often require guidance on the business aspects of art and value clear, straightforward communication with appraisers.</p>
-    </div>
-</div>
-
-
-    <!-- User Persona Section -->
-    <section class="user-personas">
-        <!-- User Persona 1 -->
-        <div class="persona">
-            <div class="persona-image">
-                <img src="sarah-thompson.jpg" alt="Sarah Thompson">
-                <blockquote>“Every piece of art is an explanation of the context in which the artist and its work evolved.”</blockquote>
-            </div>
-            <div class="persona-info">
-                <h2>Sarah Malacón</h2>
-                <ul>
-                    <li><strong>Age:</strong> 55</li>
-                    <li><strong>Occupation:</strong> Art Collector</li>
-                    <li><strong>Location:</strong> Mexico City, Mexico</li>
-                    <li><strong>Education:</strong> Master's Degree in Art History</li>
-                    <li><strong>Income Level:</strong> High</li>
-                </ul>
-                <h3>Background:</h3>
-                    <li>Art collector who has been acquiring pieces for over 15 years.</li>
-                    <li>Has a diverse collection ranging from contemporary to classical art</li>
-                    <li>She often attends gallery openings and art fairs.</li>
-                <h3>Goals:</h3>
-                <ul>
-                    <li>To ensure her collection is accurately valued and insured.</li>
-                    <li>To gain insights into the art market and trends.</li>
-                    <li>To easily access professional appraisal services for buying and selling artworks.</li>
-                </ul>
-                <h3>Challenges:</h3>
-                <ul>
-                    <li>Finding trustworthy appraisers with expertise in her specific areas of interest.</li>
-                    <li>Navigating the complexities of art valuation and insurance.</li>
-                    <li>Keeping up-to-date with fluctuating market values and trends.</li>
-                </ul>
-                <h3>Technology Usage:</h3>
-                <ul>
-                    <li>Regularly uses her smartphone and tablet to browse art-related websites and apps.</li>
-                    <li>Active on social media platforms related to art and design.</li>
-                    <li>Prefers websites that are mobile-friendly and easy to navigate.</li>
-                </ul>
-                <h3>Website Needs:</h3>
-                <ul>
-                    <li>A professional, visually appealing design with high-quality images.</li>
-                    <li>Easy access to appraisal services and pricing information.</li>
-                    <li>Detailed credentials and testimonials to establish trust.</li>
-                    <li>Educational resources and blog content about art market trends.</li>
-                </ul>
-            </div>
-        </div>
-
-        <!-- User Persona 2 -->
-        <div class="persona">
-            <div class="persona-image">
-                <img src="mark-rodriguez.jpg" alt="Mark Rodriguez">
-                <blockquote>“Every artist was first an amateur.”</blockquote>
-            </div>
-            <div class="persona-info">
-                <h2>Marco Rodriguez</h2>
-                <ul>
-                    <li><strong>Age:</strong> 32</li>
-                    <li><strong>Occupation:</strong> Emerging Artist</li>
-                    <li><strong>Location:</strong> Guadalajara, Mexico</li>
-                    <li><strong>Education:</strong> Bachelor’s Degree in Fine Arts</li>
-                    <li><strong>Income Level:</strong> Moderate</li>
-                </ul>
-                <h3>Background:</h3>
-                <p>Marco is an emerging artist who is beginning to sell his work to galleries and private collectors. He is eager to understand the value of his art and how it is perceived in the market. Marco is also interested in networking with art professionals and building a strong online presence.</p>
-                <h3>Goals:</h3>
-                <ul>
-                    <li>To accurately value his artwork for sales and exhibitions.</li>
-                    <li>To establish a credible reputation in the art community.</li>
-                    <li>To learn more about the business side of art, including pricing and appraisals.</li>
-                </ul>
-                <h3>Challenges:</h3>
-                <ul>
-                    <li>Limited experience in dealing with appraisers and art valuation.</li>
-                    <li>Navigating the financial aspects of art sales and exhibitions.</li>
-                    <li>Balancing creative work with the business demands of being an artist.</li>
-                </ul>
-                <h3>Technology Usage:</h3>
-                <ul>
-                    <li>Frequently uses a laptop and smartphone to manage his online portfolio and social media.</li>
-                    <li>Engages with online communities and forums for artists.</li>
-                    <li>Prefers websites with straightforward navigation and clear information.</li>
-                </ul>
-                <h3>Website Needs:</h3>
-                <ul>
-                    <li>A clear explanation of the appraisal process and associated costs.</li>
-                    <li>Resources and guides tailored for emerging artists.</li>
-                    <li>Accessible contact options for inquiries and consultations.</li>
-                    <li>A supportive community or forum for artists to connect and share experiences.</li>
-                </ul>
-            </div>
-        </div>
+    <!-- Two Column Layout -->
+    <section class="case-section case-section--two-column">
+      <div class="case-column">
+        <h3 class="case-column__title">The Challenge</h3>
+        <p class="case-text">Present datasets on emotion classification fail to detect emotions using simple deep learning architectures.</p>
+      </div>
+      <div class="case-column">
+        <h3 class="case-column__title">The Solution</h3>
+        <p class="case-text">Manually develop a highly diversified dataset which allows to train using a simply ResNet-18 architecture achieving high accuracy and F1 scores.</p>
+      </div>
     </section>
 
-        <!-- Starting the Design -->
-        <section id="starting_design" class="project-section">
-            <h2>Starting the Design</h2>
-            <p>As I transition from research to design, the first step in bringing the art appraiser's website to life is the creation of paper wireframes. This stage involves sketching preliminary layouts that visualize the structure and functionality of the website, serving as a blueprint for the digital design process. Paper wireframes allow me to experiment with different layouts and design elements quickly and inexpensively, facilitating early feedback and iteration.</p>
-            </div>
-
-
-            <div class="image-gallery">
-                <img src="PW1.png" alt="Image 1">
-                <img src="PW2.png" alt="Image 2">
-                <img src="PW3.png" alt="Image 3">
-                <img src="PW4.png" alt="Image 4">
-                <img src="PW5.png" alt="Image 5">
-                <img src="PW6.png" alt="Image 6">
-            </div>
-
-
-	    <h2>Digital Wireframes</h2>
-            <p>Following the completion of paper wireframes, the next step in the design process is to create digital wireframes. This stage involves transitioning from rough sketches to more polished, computer-generated layouts that provide a clearer visualization of the website’s structure and functionality. Digital wireframes serve as an intermediary step between paper sketches and high-fidelity prototypes, allowing me to refine design elements and further develop the user experience.</p>
-            <img src="LO FI MOCKUPS_ON.png" alt="Low Fidelity Mockups" class="project-image">
-
-
-	    <h2>Low-Fidelity Prototype</h2>
-            <p>After developing digital wireframes, the next step in the design process is to create a low-fidelity prototype. This stage involves transforming static wireframes into an interactive prototype that simulates the user experience. A low-fidelity prototype provides a basic yet functional representation of the website, allowing me to test user flows and gather early feedback on the overall design and usability.</p>
-
-	    <h2>Usability Study</h2>
-            <p>As part of the design validation process, I conducted an <strong>online moderated</strong> usability study to evaluate the effectiveness and user experience of the prototype. Using video conferencing tools and screen sharing, I was able to observe participants’ interactions and gather insights efficiently. <strong>Five participants</strong> were selected to represent a mix of art collectors and emerging artists, ensuring diverse perspectives and feedback on the prototype. Each session lasted <strong>between 10 to 15 minutes</strong>, providing a focused yet comprehensive evaluation of the prototype’s usability.</p>
-
-<p>Below, the key findings:</p>
-
-<div class="items_dis-container">
-    <div class="items_dis">
-        <img src="uflow_icon.png" alt="Item 1">
-        <h2>User Flow</h2>
-        <p>All participants were able to complete basic tasks, such as navigating to the contact page or viewing service details.</p>
+    <!-- Full Width Image -->
+    <div class="case-image">
+      <img src="con_matrix_7emotions.png" alt="Project Detail">
     </div>
-    <div class="items_dis">
-        <img src="navigation.png" alt="Item 3">
-        <h2>Navigation Challenges</h2>
-        <p>Some participants had difficulty reading text overlapping pattern backgrounds. However, considered the backgrounds stylish and worth keeping .</p>
-    </div>
-    <div class="items_dis">
-        <img src="content.png" alt="Item 4">
-        <h2>Content Clarity</h2>
-        <p>A few mentioned texts in the 'Services' section was so stacked it made it difficult to understand the hierarchy and organization between different services.</p>
-    </div>
-</div>
 
-        </section>
-
-        <!-- Refining Design -->
-        <section id="refining_design" class="project-section">
-
-            <h2>Refining Design</h2>
-
-<p>After completing the usability study and gathering valuable feedback, the next phase in the design process involved refining the website’s design to ensure it aligns with the client’s vision and user needs. This phase included several key steps: creating a moodboard, developing mockups, and building a high-fidelity prototype.</p>
-
-<p>To establish a cohesive visual identity for the website, I collaborated with the client to create a moodboard. This initial step involved selecting a range of images, color palettes, typography styles, and design elements that reflect the desired aesthetic and emotional tone of the site. The moodboard served as a reference point for defining the overall look and feel, ensuring that the website evokes the right emotions and aligns with the client’s brand identity.</p>
-
-<!-- Moodboard Image -->
-            <img src="MOODBOARD_ON.png" alt="ON Moodboard" class="project-image">
-        </section>
-
-<p>The moodboard helped establish the visual direction, including design elements that evoke trust, expertise, and elegance. This foundation guided the development of subsequent design stages.</p>
-
-<p>Building on the moodboard, I created detailed mockups of the website’s key pages. Mockups are static representations of the website’s layout and design, providing a clear view of how the finalized design will look. This step involved applying the color palette and design elements defined in the moodboard to create high-fidelity visual representations of the website’s pages.</p>
-
-<!-- Mockups Image -->
-            <img src="OCTAVIO NAVARRO LANDING.png" alt="ON Moodboard" class="project-image">
-            <img src="MOCKUPS OCTAVIO NAVARRO.png" alt="ON Moodboard" class="project-image">
-
-<p>Mockups were presented to the client for feedback, allowing for adjustments and final approval before moving on to the high-fidelity prototype.</p>
-
-            <h2>Design System</h2>
-<p>In this section of the UX design case study, we delve into the creation and implementation of the design system that underpins the user interface of our project. The design system serves as the foundational framework for maintaining consistency, efficiency, and cohesiveness throughout the application, ensuring that all design elements align with the overall vision and user experience goals.</p>
-
-<!-- Design System -->
-            <img src="on_logo.png" alt="logo" class="project-image">
-            <img src="design_system.png" alt="design system octavio navarro" class="project-image">
-            <img src="iconografia.png" alt="iconografia" class="project-image">
-
-
-<div class="color-palette">
-  <div class="color-stripe primary-color-1">
-<div class="color-info">
-    <p class="title"><strong>Blue de France</strong></p>
-    <p class="description">Primary Color 1</p>
-    <p class="title"><strong>HSL</strong></p>
-    <p class="description">180, 100%, 50%</p>
-    <p class="title"><strong>HEX</strong></p>
-    <p class="description">##318CE7</p>
-</div>
-  </div>
-  <div class="color-stripe primary-color-2">
-<div class="color-info">
-    <p class="title">Dark Brown</p>
-    <p class="description">Primary Color 1</p>
-    <p class="title">HSL</p>
-    <p class="description">180, 100%, 50%</p>
-    <p class="title">HEX</p>
-    <p class="description">#413E3D</p>
-</div>
-  </div>
-  <div class="color-stripe secondary-color-1">
-<div class="color-info">
-    <p class="title">White</p>
-    <p class="description">Primary Color 1</p>
-    <p class="title">HSL</p>
-    <p class="description">180, 100%, 50%</p>
-    <p class="title">HEX</p>
-    <p class="description">#00FFFF</p>
-</div>
-  </div>
-  <div class="color-stripe secondary-color-2">
-<div class="color-info">
-    <p class="title">Cofee</p>
-    <p class="description">Primary Color 1</p>
-    <p class="title">HSL</p>
-    <p class="description">180, 100%, 50%</p>
-    <p class="title">HEX</p>
-    <p class="description">#00000</p>
-</div>
-  </div>
-  <div class="color-stripe accent-color-1">
-<div class="color-info">
-    <p class="title">Coffee</p>
-    <p class="description">Primary Color 1</p>
-    <p class="title">HSL</p>
-    <p class="description">180, 100%, 50%</p>
-    <p class="title">HEX</p>
-    <p class="description">#595755</p>
-</div>
-  </div>
-  <div class="color-stripe accent-color-2">
-<div class="color-info">
-    <p class="title">Cornflower Blue</p>
-    <p class="description">Primary Color 1</p>
-    <p class="title">HSL</p>
-    <p class="description">180, 100%, 50%</p>
-    <p class="title">HEX</p>
-    <p class="description">#4b9cff</p>
-</div>
-  </div>
-</div>
-
-            <img src="design_patterns_on.png" alt="ON Moodboard" class="project-image">
-
-
-
-            <img src="MOCKUP WIX INICIO.png" alt="ON Moodboard" class="project-image">
-
-
-            <h2>High-Fidelity Prototype</h2>
-
-<p>With the mockups approved, I proceeded to develop the hi-fi protoype. This interactive version of the design incorporates realistic visual details and functional elements, providing a comprehensive simulation of the final website, allowing for detailed testing of interactions, user flows, and overall usability. <a href="https://www.figma.com/proto/x5tW6FeQ4anyQIUcFtoylw/Octavio-Navarro-Computadora?node-id=114-73&starting-point-node-id=114%3A73&t=wZfyHjhRW8QCSnk0-1" class="highlight" target="_blank">Click here to check the high-fidelity prototype.</a></p>
-
-            <h2>Accessibility Considerations</h2>
-
-<p>Accessibility considerations were integrated throughout the design refinement process to ensure the website is usable by individuals with varying abilities. Applying accessibility standards helps create an inclusive experience and ensures compliance with legal and ethical guidelines.</p>
-
-<div class="items_dis-container">
-    <div class="items_dis">
-        <img src="color_contrast.png" alt="Item 1">
-        <h2>Color Contrast</h2>
-        <p>Color palette tested for compliance with WCAG (Web Content Accessibility Guidelines) standards.</p>
-    </div>
-    <div class="items_dis">
-        <img src="keyboard.png" alt="Item 3">
-        <h2>Keyboard Navigation</h2>
-        <p>Interactive elements accessible via keyboard navigation, allowing users with motor disabilities to interact with the website effectively.</p>
-    </div>
-    <div class="items_dis">
-        <img src="alt_text.png" alt="Item 4">
-        <h2>Alt Text for Images</h2>
-        <p>Descriptive alt text was added to all images to provide context for users relying on screen readers.</p>
-    </div>
-    <div class="items_dis">
-        <img src="semantic.png" alt="Item 4">
-        <h2>Semantic HTML</h2>
-        <p>Proper use of semantic HTML elements for users with assistive technologies.</p>
-    </div>
-</div>
-
-    </section>
-
-
-        <!-- Conlusion -->
-        <section id="takeaways" class="project-section">
-            <h2>Conclusion</h2>
-
-<p>The project has successfully moved through critical design stages, from initial research and wireframes to high-fidelity prototypes and accessibility considerations. With key takeaways highlighting the strengths of the design and clear next steps outlined, the project is well-positioned for a successful transition to development and eventual launch. By continuing to focus on user needs and incorporating ongoing feedback, we aim to deliver a website that provides a valuable and engaging experience for all users.</p>
-
-    </section>
-
-    <footer class="footer">
-        <div class="footer-content">
-            <span class="footer-left">your-email@example.com</span>
-            <span class="footer-center">Víctor Cárdenas 2024</span>
-            <span class="footer-right">+1234567890</span>
+    <!-- Process Section -->
+    <section class="case-section">
+      <div class="case-section__header">
+        <h2 class="case-section__title">Process</h2>
+      </div>
+      <div class="case-section__content">
+        <p class="case-text">The approach involved several key phases:</p>
+        
+        <div class="case-process">
+          <div class="case-process__item">
+            <h4 class="case-process__step">01</h4>
+            <h3 class="case-process__title">Data Collection</h3>
+            <p class="case-process__desc">Gathering and cleaning the necessary datasets from multiple sources.</p>
+          </div>
+          <div class="case-process__item">
+            <h4 class="case-process__step">02</h4>
+            <h3 class="case-process__title">Exploratory Analysis</h3>
+            <p class="case-process__desc">Identifying patterns and insights through statistical analysis.</p>
+          </div>
+          <div class="case-process__item">
+            <h4 class="case-process__step">03</h4>
+            <h3 class="case-process__title">Model Development</h3>
+            <p class="case-process__desc">Building and training machine learning models.</p>
+          </div>
+          <div class="case-process__item">
+            <h4 class="case-process__step">04</h4>
+            <h3 class="case-process__title">Implementation</h3>
+            <p class="case-process__desc">Deploying the solution into production environment.</p>
+          </div>
         </div>
-    </footer>
+      </div>
+    </section>
 
+    <!-- Results Section -->
+    <section class="case-section case-section--dark">
+      <div class="case-section__header">
+        <h2 class="case-section__title">Results</h2>
+      </div>
+      <div class="case-section__content">
+        <div class="case-stats">
+          <div class="case-stat">
+            <h3 class="case-stat__value">95%</h3>
+            <p class="case-stat__label">Accuracy</p>
+          </div>
+          <div class="case-stat">
+            <h3 class="case-stat__value">4x</h3>
+            <p class="case-stat__label">Faster Processing</p>
+          </div>
+          <div class="case-stat">
+            <h3 class="case-stat__value">10K</h3>
+            <p class="case-stat__label">Daily Predictions</p>
+          </div>
+        </div>
+        <p class="case-text">The implemented solution delivered significant improvements in processing time and accuracy, enabling the client to make data-driven decisions with confidence.</p>
+      </div>
+    </section>
 
+    <!-- Gallery Section -->
+    <section class="case-gallery">
+      <div class="case-gallery__item">
+        <img src="project_gallery_1.jpg" alt="Project Gallery Image 1">
+      </div>
+      <div class="case-gallery__item">
+        <img src="project_gallery_2.jpg" alt="Project Gallery Image 2">
+      </div>
+    </section>
 
-    <!-- JavaScript for custom cursor interaction -->
-    <script src="script.js"></script>
-    <script>
-        // JavaScript to handle expanding the code snippet
-        document.getElementById('expand-code').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector('.code-snippet').classList.toggle('expanded');
-        });
-    </script>
+    <!-- Next Project CTA -->
+    <section class="case-cta">
+      <div class="case-cta__content">
+        <h3 class="case-cta__title">Next Project</h3>
+        <h2 class="case-cta__project">Project Name</h2>
+        <a href="project2.html" class="case-cta__link">View Project →</a>
+      </div>
+    </section>
+  </main>
 
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__content">
+      <div class="footer__left">
+        <h3>Victor Cárdenas</h3>
+        <p>Data Engineer & Scientist</p>
+      </div>
+      <div class="footer__right">
+        <div class="footer__links">
+          <a href="mailto:hello@victor.com" class="footer__link">Email</a>
+          <a href="https://www.linkedin.com/in/victor-cardenas-g/" class="footer__link">LinkedIn</a>
+          <a href="#" class="footer__link">GitHub</a>
+        </div>
+        <p class="footer__copyright">© 2023 Victor Cárdenas. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="case-study.js"></script>
 </body>
 </html>

@@ -1,373 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UEFA Matches Prediction</title>
-    <link rel="stylesheet" href="project_1_styles.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Project Title | Victor Cárdenas</title>
+  <link rel="stylesheet" href="styles.css">
+  <!-- GSAP for animations -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+  <!-- Inter Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap">
 </head>
 <body>
-    <!-- Add custom cursor element -->
-    <div class="custom-cursor"></div>
+  <!-- Loading Overlay -->
+  <div class="loader">
+    <div class="loader__inner"></div>
+  </div>
 
-    <!-- Header -->
-    <header>
-        <div class="logo">
-            <a href="index.html"><img src="logo_b.png" alt="Logo"></a>
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="index.html" class="nav__logo">
+      <img src="logo_vic.png" alt="Victor Cárdenas Logo" class="nav__logo-image">
+    </a>
+    <div class="nav__menu">
+      <a href="index.html" class="nav__item">Work</a>
+      <a href="about.html" class="nav__item">About</a>
+      <a href="cv.html" class="nav__item">CV</a>
+      <a href="contact.html" class="nav__item">Contact</a>
+    </div>
+  </nav>
+  
+  <!-- Case Study Header -->
+  <header class="case-header">
+    <div class="case-header__content">
+      <h1 class="case-header__title">
+        <span class="line">Emotion Classification</span>
+        <span class="line">Using Deep Learning</span>
+      </h1>
+      <div class="case-header__meta">
+        <div class="case-meta__item">
+          <h4>Role</h4>
+          <p>Data Scientist</p>
         </div>
-        <nav>
-            <ul>
-                <li><a href="about.html">About</a></li>
-                <li><a href="index.html#projects">Projects</a></li>
-                <li><a href="cv.html">CV</a></li>
-            </ul>
-        </nav>
-    </header>
-
-    <!-- Project Content -->
-    <section class="project-content">
-        <h1>Predicting Champion's League Matches using Machine Learning</h1>
-        <p>In this project, I aimed to predict the outcomes of football matches using historical data from past seasons. By leveraging machine learning techniques, specifically a Random Forest classifier, I intended to predict whether the home team would win, the away team would win, or the match would end in a draw. The primary goal was to build a model that can accurately predict match outcomes based on various match features and instances.</p>
-
-    <section id="pipeline-diagram" class="project-section">
-        <h2>Project Stages</h2>
-        <div class="pipeline-diagram">
-            <div class="stage" data-target="data-collection">1. Data Collection</div>
-            <div class="stage" data-target="data-understanding">2. Data Understanding</div>
-            <div class="stage" data-target="data-preparation">3. Data Preparation</div>
-            <div class="stage" data-target="eda">4. Exploratory Data Analysis (EDA)</div>
-            <div class="stage" data-target="feature-engineering">5. Feature Engineering</div>
-            <div class="stage" data-target="modeling">6. Modeling</div>
-            <div class="stage" data-target="results">7. Results</div>
-            <div class="stage" data-target="conclusion">Conclusions</div>
+        <div class="case-meta__item">
+          <h4>Year</h4>
+          <p>2025</p>
         </div>
+        <div class="case-meta__item">
+          <h4>Client</h4>
+          <p>Western Institute of Higher Education</p>
+        </div>
+      </div>
+    </div>
+  </header>
+
+  <!-- Hero Image -->
+  <div class="case-hero">
+    <img src="project_4.png" alt="Project Hero Image" class="case-hero__image">
+  </div>
+
+  <!-- Case Study Content -->
+  <main class="case-content">
+    <!-- Introduction Section -->
+    <section class="case-section">
+      <div class="case-section__header">
+        <h2 class="case-section__title">Introduction</h2>
+      </div>
+      <div class="case-section__content">
+        <p class="case-text">The objective of this project is to develop a deep learning model that can classify human emotions from images. The model is trained on a dataset of facial images categorized into six emotion classes: Anger, Fear, Happy, Neutral, Sad, and Surprise. The project utilizes a convolutional neural network (CNN) architecture to achieve this task, leveraging the ResNet-152 backbone for feature extraction.</p>
+      </div>
     </section>
 
-        <!-- Data Collection -->
-        <section id="data-collection" class="project-section">
-            <h2>Data Collection</h2>
-            <p>The data for this project was sourced from a comprehensive dataset containing information on football matches across different seasons. Each row in the dataset represented a single match, with columns detailing match features such as home and away teams, goals scored, and the season in which the match took place.</p>
-
-<p>I personally created this dataset by webscrapping Wikipedia's <a href="https://en.wikipedia.org/wiki/UEFA_Champions_League" class="highlight">UEFA Champions League</a> section.
- 
-
-            <div class="code-snippet">
-                <pre><code>
-
-import pandas as pd
-
-# Load the dataset
-data = pd.read_csv('football_matches.csv')
-
-                </code></pre>
-            </div>
-
-
-        <section id="data-understanding" class="project-section">
-            <h2>Data Understanding</h2>
-<p>The dataset included columns such as <strong> Home Team, Away Team, Home Goals, Away Goals, Instance, and Season </strong>. These features provided a detailed view of each match's context and outcome.</p>
-
-        <!-- Data Preparation Section -->
-        <section id="data-preparation" class="project-section">            
-		    <h2>Data Preparation</h2>
-            <p>Data preparation involved cleaning the dataset and creating new columns to aid the modeling process. I created an Outcome column to indicate whether the home team won, the away team won, or the match was a draw.</p>
-           
-<p>Below, the corresponding code.</p>
-
-                <pre><code>
-
-# Create 'Outcome' column
-data['Outcome'] = data.apply(
-    lambda row: 'Home Team ' + row['Home Team'] + ' Win' if row['Home Goals'] > row['Away Goals'] else (
-        'Away Team ' + row['Away Team'] + ' Win' if row['Away Goals'] > row['Home Goals'] else 'Draw'),
-    axis=1
-)
-
-# Encode categorical variables
-data_encoded = pd.get_dummies(data, columns=['Home Team', 'Away Team', 'Instance', 'Season'])
-
-                </code></pre>
-
-        </section>
-
-        <!-- Exploratory Data Analysis Section -->
-        <section id="eda" class="project-section">            
-            <h2>Exploratory Data Analysis (EDA)</h2>
-            <p>Exploratory Data Analysis (EDA) was performed to understand the distribution of match outcomes and identify patterns in the data. I visualized the frequency of each match outcome and examined the goals scored by home and away teams.</p>
-
-
-      <pre><code>
-
-import matplotlib.pyplot as plt
-
-# Plot the distribution of match outcomes
-data['Outcome'].value_counts().plot(kind='bar')
-plt.title('Distribution of Match Outcomes')
-plt.xlabel('Outcome')
-plt.ylabel('Frequency')
-plt.show()
-
-# Plot the distribution of goals scored by home and away teams
-data[['Home Goals', 'Away Goals']].plot(kind='hist', alpha=0.5, bins=10)
-plt.title('Distribution of Goals Scored')
-plt.xlabel('Goals')
-plt.ylabel('Frequency')
-plt.show()
-
-            </code></pre>
-
- 	    <!-- Winning Teams Image -->
-            <img src="top_10_teams_winning_rate.png" alt="Teams Winning Rate" class="project-image">
-
- 	    <!-- Winning Teams Image -->
-            <img src="team_winning_rate_vs_appearances.png" alt="Teams Winning Rate vs Appearances" class="project-image">
-        </section>
-
-        <!-- Feature Engineering -->
-        <section id="feature-engineering" class="project-section">
-            <h2>Feature Engineering</h2>
-            <p>Feature engineering involved transforming categorical features into a numerical format suitable for machine learning models. I used one-hot encoding to convert categorical variables such as Home Team, Away Team, Instance, and Season into binary columns.</p>
-
-            <pre><code>
-
-# Encode categorical variables
-data_encoded = pd.get_dummies(data, columns=['Home Team', 'Away Team', 'Instance', 'Season'])
-            </code></pre>
-        </section>
-
-        <!-- Modeling -->
-        <section id="modeling" class="project-section">
-            <h2>Modeling</h2>
-            <p>For the modeling process, I chose a Random Forest classifier due to its ability to handle complex interactions between features and its robustness against overfitting. I split the data into training and testing sets, trained the model on the training data, and evaluated its performance on the testing data.</p>
-
-            <pre><code>
-
-from sklearn.model_selection import train_test_split
-from sklearn.ensemble import RandomForestClassifier
-
-# Split the dataset into training and testing sets
-X = data_encoded.drop(columns=['Outcome'])
-y = data_encoded['Outcome']
-X_train, X_test, y_train, y_test = train_test_split(X, y, test_size=0.2, random_state=42)
-
-# Initialize the model
-model = RandomForestClassifier(random_state=42)
-
-# Train the model
-model.fit(X_train, y_train)
-
-            </code></pre>
-
-        </section>
-
-        <!-- Results -->
-        <section id="results" class="project-section">
-            <h2>Results</h2>
-
-<p>The model's performance was evaluated using metrics such as accuracy, precision, recall, and F1-score. Additionally, I implemented functionality to predict probabilities for each possible outcome, providing insights into the model's confidence in its predictions.</p>
-
-            <pre><code>
-
-from sklearn.metrics import classification_report, accuracy_score
-
-# Evaluate the model
-y_pred = model.predict(X_test)
-print(classification_report(y_test, y_pred))
-print(f"Accuracy: {accuracy_score(y_test, y_pred):.2f}")
-
-# Predict probabilities for a single match
-input_features = pd.DataFrame(columns=X_train.columns)
-input_features.loc[0] = [0] * len(input_features.columns)
-home_team = 'Ajax'
-away_team = 'Real Madrid'
-instance = 'Group Stage'
-
-# Set appropriate columns to 1
-home_col = f'Home Team_{home_team}'
-away_col = f'Away Team_{away_team}'
-instance_col = f'Instance_{instance}'
-if home_col in input_features.columns:
-    input_features.at[0, home_col] = 1
-if away_col in input_features.columns:
-    input_features.at[0, away_col] = 1
-if instance_col in input_features.columns:
-    input_features.at[0, instance_col] = 1
-
-# Predict probabilities
-probabilities = model.predict_proba(input_features)
-class_indices = {label: i for i, label in enumerate(model.classes_)}
-home_win_prob = probabilities[0, class_indices[f'Home Team {home_team} Win']]
-away_win_prob = probabilities[0, class_indices[f'Away Team {away_team} Win']]
-draw_prob = probabilities[0, class_indices['Draw']]
-
-print(f"Probability of Home Win: {home_win_prob:.2f}")
-print(f"Probability of Away Win: {away_win_prob:.2f}")
-print(f"Probability of Draw: {draw_prob:.2f}")
-
-            </code></pre>
-
-<p>When tested, the model perfomed well, with a <span class="highlight">0.81</span> precision. Below, the results:</p>
-
-            <div class="code-snippet">
-                <pre><code>
-Accuracy: 0.81
-                                        precision    recall  f1-score   support
-
-                 Away Team Arsenal Win       0.50      1.00      0.67         1
-         Away Team Atlético Madrid Win       1.00      1.00      1.00         1
-               Away Team Barcelona Win       0.50      0.50      0.50         2
-           Away Team Bayern Munich Win       0.75      1.00      0.86         3
-                 Away Team Benfica Win       1.00      1.00      1.00         1
-       Away Team Borussia Dortmund Win       1.00      0.67      0.80         3
-Away Team Borussia Mönchengladbach Win       0.00      0.00      0.00         0
-                   Away Team Braga Win       0.00      0.00      0.00         1
-             Away Team Galatasaray Win       0.00      0.00      0.00         1
-             Away Team Inter Milan Win       0.00      0.00      0.00         1
-                   Away Team Lazio Win       0.00      0.00      0.00         1
-         Away Team Manchester City Win       1.00      1.00      1.00         4
-       Away Team Manchester United Win       0.00      0.00      0.00         0
-                   Away Team Milan Win       1.00      1.00      1.00         1
-                  Away Team Napoli Win       1.00      0.50      0.67         2
-           Away Team PSV Eindhoven Win       0.00      0.00      0.00         1
-     Away Team Paris Saint-Germain Win       1.00      1.00      1.00         2
-                   Away Team Porto Win       1.00      1.00      1.00         2
-              Away Team RB Leipzig Win       1.00      1.00      1.00         2
-             Away Team Real Madrid Win       1.00      1.00      1.00         5
-           Away Team Real Sociedad Win       1.00      0.50      0.67         2
-       Away Team Red Bull Salzburg Win       0.00      0.00      0.00         1
-        Away Team Shakhtar Donetsk Win       1.00      1.00      1.00         1
-  Away Team Zenit Saint Petersburg Win       0.00      0.00      0.00         0
-                                  Draw       0.69      0.89      0.77        27
-                 Home Team Antwerp Win       0.00      0.00      0.00         1
-                 Home Team Arsenal Win       1.00      1.00      1.00         4
-         Home Team Atlético Madrid Win       1.00      1.00      1.00         5
-            Home Team Austria Wien Win       0.00      0.00      0.00         0
-               Home Team Barcelona Win       1.00      1.00      1.00         4
-           Home Team Bayern Munich Win       0.75      0.75      0.75         4
-                 Home Team Benfica Win       0.00      0.00      0.00         0
-       Home Team Borussia Dortmund Win       1.00      1.00      1.00         4
-                  Home Team Celtic Win       1.00      1.00      1.00         1
-              Home Team Copenhagen Win       1.00      0.50      0.67         2
-               Home Team Feyenoord Win       1.00      1.00      1.00         2
-             Home Team Inter Milan Win       1.00      0.67      0.80         3
-                   Home Team Lazio Win       1.00      0.33      0.50         3
-                    Home Team Lens Win       0.00      0.00      0.00         2
-         Home Team Manchester City Win       1.00      1.00      1.00         4
-       Home Team Manchester United Win       0.50      1.00      0.67         1
-                   Home Team Milan Win       1.00      1.00      1.00         1
-                  Home Team Napoli Win       1.00      1.00      1.00         1
-        Home Team Newcastle United Win       0.00      0.00      0.00         1
-           Home Team PSV Eindhoven Win       1.00      1.00      1.00         1
-     Home Team Paris Saint-Germain Win       1.00      1.00      1.00         3
-                   Home Team Porto Win       1.00      1.00      1.00         3
-              Home Team RB Leipzig Win       1.00      1.00      1.00         2
-             Home Team Real Madrid Win       0.80      1.00      0.89         4
-           Home Team Real Sociedad Win       0.00      0.00      0.00         1
-                 Home Team Sevilla Win       0.00      0.00      0.00         0
-        Home Team Shakhtar Donetsk Win       1.00      0.50      0.67         2
-          Home Team Spartak Moscow Win       0.00      0.00      0.00         0
-              Home Team Young Boys Win       1.00      1.00      1.00         1
-
-                              accuracy                           0.81       125
-                             macro avg       0.64      0.61      0.61       125
-                          weighted avg       0.81      0.81      0.79       125
-                </code></pre>
-            </div>
-
-
-<p>Here, an example of the prediction function with reasoning included:</p>
-
-            <div class="code-snippet">
-                <pre><code>
-
-# Define the predict_match_outcome function
-def predict_match_outcome(home_team, away_team, instance):
-    # Prepare the input features
-    input_features = pd.DataFrame(columns=X_train.columns)
-    input_features.loc[0] = [0] * len(input_features.columns)
-    
-    # Identify the relevant columns
-    home_col = f'Home Team_{home_team}'
-    away_col = f'Away Team_{away_team}'
-    instance_col = f'Instance_{instance}'
-    
-    # Set the appropriate columns to 1
-    if home_col in input_features.columns:
-        input_features.at[0, home_col] = 1
-    if away_col in input_features.columns:
-        input_features.at[0, away_col] = 1
-    if instance_col in input_features.columns:
-        input_features.at[0, instance_col] = 1
-
-    # Ensure the input_features DataFrame is consistent with the model's expectations
-    check_columns_consistency(X_train, input_features)
-    
-    # Predict probabilities
-    probabilities = model.predict_proba(input_features)
-    
-    # Extract probabilities for home win, away win, and draw
-    class_indices = {label: i for i, label in enumerate(model.classes_)}
-    home_win_prob = probabilities[0, class_indices[f'Home Team {home_team} Win']]
-    away_win_prob = probabilities[0, class_indices[f'Away Team {away_team} Win']]
-    draw_prob = probabilities[0, class_indices['Draw']]
-    
-    # Determine the predicted outcome
-    outcome = model.predict(input_features)[0]
-    
-    # Generate reasoning
-    reasoning = (
-        f"Based on the model's analysis:\n"
-        f"Chance of Home Team '{home_team}' Win: {home_win_prob:.2f}\n"
-        f"Chance of Away Team '{away_team}' Win: {away_win_prob:.2f}\n"
-        f"Chance of Draw: {draw_prob:.2f}\n"
-    )
-    
-    return outcome, reasoning
-
-# Example usage
-home_team = 'Ajax'
-away_team = 'Real Madrid'
-instance = 'Group Stage'
-
-prediction, reasoning = predict_match_outcome(home_team, away_team, instance)
-print(f"Prediction: {prediction}\n")
-print(f"Reasoning:\n{reasoning}")
-
-                </code></pre>
-            </div>
-
-<p>And, the result:</p>
-
-                <pre><code>
-Prediction: Draw
-
-Reasoning:
-Based on the model's analysis:
-Chance of Home Team 'Ajax' Win: 0.10
-Chance of Away Team 'Real Madrid' Win: 0.35
-Chance of Draw: 0.40
-                </code></pre>
-
-
-
-
-        <!-- Conclusion -->
-        <section id="conclusion" class="project-section">
-            <h2>Conclusion and Next Steps</h2>
-
-<p>The Random Forest classifier demonstrated robust performance, accurately predicting the outcome of matches. The model also provided probability estimates for each potential outcome, offering valuable insights into the factors influencing match results. Future improvements involve adding further past seasons from the Champion's League, incorporating additional features such as player statistics or recent team performance to further enhance the model's predictive power.</p>
-
+    <!-- Two Column Layout -->
+    <section class="case-section case-section--two-column">
+      <div class="case-column">
+        <h3 class="case-column__title">The Challenge</h3>
+        <p class="case-text">Present datasets on emotion classification fail to detect emotions using simple deep learning architectures.</p>
+      </div>
+      <div class="case-column">
+        <h3 class="case-column__title">The Solution</h3>
+        <p class="case-text">Manually develop a highly diversified dataset which allows to train using a simply ResNet-18 architecture achieving high accuracy and F1 scores.</p>
+      </div>
     </section>
 
-    <!-- JavaScript for custom cursor interaction -->
-    <script src="script.js"></script>
-    <script>
-        // JavaScript to handle expanding the code snippet
-        document.getElementById('expand-code').addEventListener('click', function(e) {
-            e.preventDefault();
-            document.querySelector('.code-snippet').classList.toggle('expanded');
-        });
-    </script>
+    <!-- Full Width Image -->
+    <div class="case-image">
+      <img src="con_matrix_7emotions.png" alt="Project Detail">
+    </div>
 
+    <!-- Process Section -->
+    <section class="case-section">
+      <div class="case-section__header">
+        <h2 class="case-section__title">Process</h2>
+      </div>
+      <div class="case-section__content">
+        <p class="case-text">The approach involved several key phases:</p>
+        
+        <div class="case-process">
+          <div class="case-process__item">
+            <h4 class="case-process__step">01</h4>
+            <h3 class="case-process__title">Data Collection</h3>
+            <p class="case-process__desc">Gathering and cleaning the necessary datasets from multiple sources.</p>
+          </div>
+          <div class="case-process__item">
+            <h4 class="case-process__step">02</h4>
+            <h3 class="case-process__title">Exploratory Analysis</h3>
+            <p class="case-process__desc">Identifying patterns and insights through statistical analysis.</p>
+          </div>
+          <div class="case-process__item">
+            <h4 class="case-process__step">03</h4>
+            <h3 class="case-process__title">Model Development</h3>
+            <p class="case-process__desc">Building and training machine learning models.</p>
+          </div>
+          <div class="case-process__item">
+            <h4 class="case-process__step">04</h4>
+            <h3 class="case-process__title">Implementation</h3>
+            <p class="case-process__desc">Deploying the solution into production environment.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Results Section -->
+    <section class="case-section case-section--dark">
+      <div class="case-section__header">
+        <h2 class="case-section__title">Results</h2>
+      </div>
+      <div class="case-section__content">
+        <div class="case-stats">
+          <div class="case-stat">
+            <h3 class="case-stat__value">95%</h3>
+            <p class="case-stat__label">Accuracy</p>
+          </div>
+          <div class="case-stat">
+            <h3 class="case-stat__value">4x</h3>
+            <p class="case-stat__label">Faster Processing</p>
+          </div>
+          <div class="case-stat">
+            <h3 class="case-stat__value">10K</h3>
+            <p class="case-stat__label">Daily Predictions</p>
+          </div>
+        </div>
+        <p class="case-text">The implemented solution delivered significant improvements in processing time and accuracy, enabling the client to make data-driven decisions with confidence.</p>
+      </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="case-gallery">
+      <div class="case-gallery__item">
+        <img src="project_gallery_1.jpg" alt="Project Gallery Image 1">
+      </div>
+      <div class="case-gallery__item">
+        <img src="project_gallery_2.jpg" alt="Project Gallery Image 2">
+      </div>
+    </section>
+
+    <!-- Next Project CTA -->
+    <section class="case-cta">
+      <div class="case-cta__content">
+        <h3 class="case-cta__title">Next Project</h3>
+        <h2 class="case-cta__project">Project Name</h2>
+        <a href="project2.html" class="case-cta__link">View Project →</a>
+      </div>
+    </section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer__content">
+      <div class="footer__left">
+        <h3>Victor Cárdenas</h3>
+        <p>Data Engineer & Scientist</p>
+      </div>
+      <div class="footer__right">
+        <div class="footer__links">
+          <a href="mailto:hello@victor.com" class="footer__link">Email</a>
+          <a href="https://www.linkedin.com/in/victor-cardenas-g/" class="footer__link">LinkedIn</a>
+          <a href="#" class="footer__link">GitHub</a>
+        </div>
+        <p class="footer__copyright">© 2023 Victor Cárdenas. All rights reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="case-study.js"></script>
 </body>
 </html>
