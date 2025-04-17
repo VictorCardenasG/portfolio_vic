@@ -1,100 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!-- GSAP for animations -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
 
-<!-- DESKTOP VERSION -->
-<div class="layout-desktop">
-        <!DOCTYPE html>
-        <html lang="en">
-        <head>
-            <meta charset="UTF-8">
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Portfolio</title>
-            <link rel="stylesheet" href="styles.css">
-        </head>
-        <body>
-            <!-- Add custom cursor element -->
-            <div class="custom-cursor"></div>
-        
-            <!-- First row -->
-            <header>
-                <div class="logo">
-                    <img src="logo.png" alt="Logo">
-                </div>
-                <nav>
-                    <ul>
-                        <li><a href="about.html">About</a></li>
-                        <li><a href="#projects">Projects</a></li>
-                        <li><a href="cv.html">CV</a></li>
-                    </ul>
-                </nav>
-            </header>
-        
-            <!-- Second row -->
-            <section class="welcome-section">
-                <h1>Welcome</h1>
-                <p id="typing-text">My name is Víctor. I have a passion for aesthetics, creation and improving people's lives through design.</p>
-                <a href="#projects" class="button">Check My Projects</a>
-            </section>
-        
-            <!-- Projects Section -->
-            <section id="projects" class="projects-section">
-                <div class="projects-grid">
-                    <a href="project1.html" class="project-item" style="background-image: url('project_1.png');"></a>
-                    <a href="project2.html" class="project-item" style="background-image: url('project_2.png');"></a>
-                    <a href="project3.html" class="project-item" style="background-image: url('project_3.png');"></a>
-                    <a href="project4.html" class="project-item" style="background-image: url('project_4.png');"></a>
-                    <a href="project5.html" class="project-item" style="background-image: url('project_5.png');"></a>
-                    <a href="project6.html" class="project-item" style="background-image: url('project_6.png');"></a>
-                </div>
-            </section>
-        
-            <footer class="footer">
-                <div class="footer-content">
-                    <span class="footer-left"></span>
-                    <span class="footer-center">Víctor Cárdenas 2025</span>
-                    <span class="footer-right"></span>
-                </div>
-            </footer>
-        
-        
-            <!-- JavaScript for custom cursor interaction -->
-            <script src="script.js"></script>
-        </body>
-        </html>
-</div>
-
-<!-- MOBILE VERSION -->
-<div class="layout-mobile">
-  <div class="mobile-navbar">
-      <div class="hamburger" id="hamburgerIcon" onclick="toggleMenu()">
-        <span></span>
-        <span></span>
-        <span></span>
-      </div>
-      <ul class="mobile-nav-links" id="mobileMenu">
-        <li><a href="about.html">About</a></li>
-        <li><a href="#projects">Projects</a></li>
-        <li><a href="cv.html">CV</a></li>
-      </ul>
+<!-- Inter Font -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400&display=swap">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Victor Cárdenas | Portfolio</title>
+  <link rel="stylesheet" href="styles_basic.css">
+</head>
+<!-- Loading Overlay -->
+<div class="loader">
+    <div class="loader__inner"></div>
   </div>
-  
-  <section class="mobile-header">
-    <div class="gif-viewport">
-      <img src="gif_sitio_vic.gif" alt="Victor's Introduction" class="original-size-gif">
+<body>
+  <!-- Navigation -->
+  <nav class="nav">
+    <a href="#index_basic.html" class="nav__logo">
+        <img src="logo_vic.png" alt="Victor Cárdenas Logo" class="nav__logo-image">
+    </a>
+    <div class="nav__menu">
+      <span class="nav__item">Work</span>
+      <span class="nav__item">About</span>
+      <span class="nav__item">Contact</span>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <main class="hero">
+    <h1 class="hero__title">
+      <span class="line">Victor</span>
+      <span class="line">Cárdenas</span>
+    </h1>
+  </main>
+
+  <!-- Scrolling Content -->
+  <section class="scroller">
+    <div class="scroller__item">
+      <p>Data Engineer</p>
+    </div>
+    <div class="scroller__item">
+      <p>Data Scientist</p>
+    </div>
+    <div class="scroller__item">
+      <p>Designer</p>
+    </div>
+    <div class="scroller__item">
+        <p>Scroll down to see my work.</p>
     </div>
   </section>
-  
-  <div class="mobile-projects">
-        <a href="project2.html" class="mobile-project-card">
-          <img src="project_2.png" alt="Project 2">
-        </a>
-        <a href="project3.html" class="mobile-project-card">
-            <img src="project_3.png" alt="Project 3">
-          </a>      
-          <a href="project4.html" class="mobile-project-card">
-            <img src="project_4.png" alt="Project 4">
-          </a> 
-          <a href="project1.html" class="mobile-project-card">
-            <img src="project_1.png" alt="Project 1">
-          </a>
-    </div>
-</div>
 
+  <script src="script_basic.js"></script>
+
+  <!-- Projects Section -->
+<section class="projects">
+    <div class="projects__grid">
+      <!-- Project 1 -->
+      <a href="project1.html" class="project">
+        <div class="project__image">
+          <img src="project_3.png" alt="Project 1">
+        </div>
+        <div class="project__info">
+          <h3>Project Title</h3>
+          <p>Category</p>
+        </div>
+      </a>
+      
+      <!-- Project 2 -->
+      <a href="project2.html" class="project">
+        <div class="project__image">
+          <img src="project_4.png" alt="Project 2">
+        </div>
+        <div class="project__info">
+          <h3>Project Title</h3>
+          <p>Category</p>
+        </div>
+      </a>
+
+      <!-- Project 3 -->
+      <a href="project2.html" class="project">
+        <div class="project__image">
+          <img src="project_1.png" alt="Project 2">
+        </div>
+        <div class="project__info">
+          <h3>Project Title</h3>
+          <p>Category</p>
+        </div>
+      </a>
+
+      <!-- Project 4 -->
+      <a href="project2.html" class="project">
+        <div class="project__image">
+          <img src="project_4.png" alt="Project 2">
+        </div>
+        <div class="project__info">
+          <h3>Project Title</h3>
+          <p>Category</p>
+        </div>
+      </a>
+      <!-- Add more projects as needed -->
+    </div>
+  </section>
+  <!-- Navigation Arrows -->
+  <div class="projects-nav">
+    <button class="projects-nav__prev">←</button>
+    <button class="projects-nav__next">→</button>
+  </div>
+
+</body>
+</html>

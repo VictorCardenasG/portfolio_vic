@@ -110,3 +110,39 @@ window.addEventListener("load", () => {
       }
     });
   });
+
+  // Horizontal Scroll for Projects
+document.addEventListener('DOMContentLoaded', () => {
+    const projectsSection = document.querySelector('.projects');
+    
+    if (projectsSection) {
+      // Enable smooth scrolling behavior
+      projectsSection.style.scrollBehavior = 'smooth';
+      
+      // Optional: Add scroll snapping points
+      projectsSection.style.scrollSnapType = 'x mandatory';
+      
+      // Optional: Add this if you want to hide the scrollbar
+      projectsSection.style.scrollbarWidth = 'none'; /* Firefox */
+      projectsSection.style.msOverflowStyle = 'none'; /* IE/Edge */
+    }
+    
+    // Optional: Initialize GSAP ScrollTrigger for horizontal scrolling
+    const projectsGrid = document.querySelector('.projects__grid');
+    if (projectsGrid && ScrollTrigger) {
+      gsap.to(projectsGrid, {
+        x: () => -(projectsGrid.scrollWidth - window.innerWidth),
+        ease: "none",
+        scrollTrigger: {
+          trigger: projectsSection,
+          start: "top top",
+          end: () => `+=${projectsGrid.scrollWidth - window.innerWidth}`,
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true
+        }
+      });
+    }
+  });
+
+  

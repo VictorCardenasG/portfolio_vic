@@ -40,9 +40,28 @@
     z-index: 100;
   }
   
-  .nav__logo {
-    font-size: 1.6rem;
-    letter-spacing: 0.2em;
+/* Navigation Logo */
+.nav__logo {
+    display: flex;
+    align-items: center;
+    height: 100%; /* Takes full height of nav */
+  }
+  
+  .nav__logo-image {
+    height: 2.4rem; /* Adjust to match your design */
+    width: auto; /* Maintains aspect ratio */
+    transition: opacity 0.3s ease;
+  }
+  
+  .nav__logo-image:hover {
+    opacity: 0.8;
+  }
+  
+  /* Mobile adjustments */
+  @media (max-width: 768px) {
+    .nav__logo-image {
+      height: 2rem; /* Slightly smaller on mobile */
+    }
   }
   
   .nav__menu {
@@ -149,27 +168,34 @@
     }
   }
 
-  /* ===== Projects Grid ===== */
+/* ===== Horizontal Projects Grid ===== */
 .projects {
-    padding: 8vw;
+    padding: 8vw 0;
+    width: 100vw;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch; /* Smooth scrolling on iOS */
+    scroll-snap-type: x mandatory;
   }
   
   .projects__grid {
-    display: grid;
-    grid-template-columns: repeat(12, 1fr);
-    gap: 1.6vw;
+    display: flex;
+    gap: 2vw;
+    padding: 0 8vw;
+    width: max-content;
+    height: 100%;
   }
   
   .project {
-    grid-column: span 4;
-    text-decoration: none;
-    color: white;
+    flex: 0 0 calc(33.333vw - 2vw); /* 33% of viewport width minus gap */
+    scroll-snap-align: start;
     position: relative;
-    overflow: hidden;
+    height: 70vh; /* Fixed height for projects */
+    min-width: 0; /* Prevent flex item overflow */
   }
   
   .project__image {
-    aspect-ratio: 1/1;
+    width: 100%;
+    height: 100%;
     overflow: hidden;
   }
   
@@ -181,7 +207,12 @@
   }
   
   .project__info {
-    padding: 1.6vw 0;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 2rem;
+    background: linear-gradient(to top, rgba(0,0,0,0.8), transparent);
     opacity: 0;
     transform: translateY(10px);
     transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
@@ -198,18 +229,54 @@
   
   /* Mobile Adaptation */
   @media (max-width: 768px) {
-    .projects {
-      padding: 6vw;
-    }
-    
     .project {
-      grid-column: span 6 !important;
+      flex: 0 0 calc(50vw - 3vw); /* 50% of viewport width minus gap */
     }
     
     .projects__grid {
-      gap: 3.2vw;
+      gap: 3vw;
     }
   }
+
+  /* Horizontal Arrows Effects */
+  .projects-nav {
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+    display: flex;
+    gap: 1rem;
+    z-index: 100;
+  }
+  
+  .projects-nav button {
+    background: rgba(255,255,255,0.2);
+    border: none;
+    color: white;
+    width: 3rem;
+    height: 3rem;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background 0.3s ease;
+  }
+  
+  .projects-nav button:hover {
+    background: rgba(255,255,255,0.4);
+  }
+
+  .projects::-webkit-scrollbar {
+    height: 5px;
+  }
+  
+  .projects::-webkit-scrollbar-track {
+    background: rgba(255,255,255,0.1);
+  }
+  
+  .projects::-webkit-scrollbar-thumb {
+    background: rgba(255,255,255,0.3);
+    border-radius: 5px;
+  }
+
+/* Loading */
 
   .loader {
     position: fixed;

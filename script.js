@@ -1,57 +1,148 @@
-// Get the custom cursor element
-const cursor = document.querySelector('.custom-cursor');
-
-function toggleMenu() {
-    const menu = document.getElementById('mobileMenu');
-    const icon = document.getElementById('hamburgerIcon');
-    menu.classList.toggle('show');
-    icon.classList.toggle('open');
-  }
-  
-
-// Track mouse movement
-document.addEventListener('mousemove', (e) => {
-    // Update cursor position
-    cursor.style.left = `${e.clientX}px`;
-    cursor.style.top = `${e.clientY}px`;
-});
-
-// Implement aggressive scroll
-let isScrolling = false;
-
-window.addEventListener('wheel', (e) => {
-    if (!isScrolling) {
-        isScrolling = true;
-        if (e.deltaY > 0) {
-            // Scroll down
-            window.scrollTo({
-                top: window.innerHeight,
-                behavior: 'smooth'
-            });
-        } else {
-            // Scroll up
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        }
-        setTimeout(() => {
-            isScrolling = false;
-        }, 1000);
-    }
-});
-
-document.addEventListener('DOMContentLoaded', function () {
-    const stages = document.querySelectorAll('.stage');
-    
-    stages.forEach(stage => {
-        stage.addEventListener('click', function () {
-            const targetId = stage.getAttribute('data-target');
-            const targetSection = document.getElementById(targetId);
-            
-            if (targetSection) {
-                targetSection.scrollIntoView({ behavior: 'smooth' });
-            }
-        });
+// Wait for DOM to load
+document.addEventListener('DOMContentLoaded', () => {
+    // 1. Text Reveal Animation
+    const lines = document.querySelectorAll('.line');
+    lines.forEach((line, index) => {
+      gsap.from(line, {
+        y: '100%',
+        duration: 1.2,
+        delay: index * 0.15,
+        ease: 'power3.out'
+      });
     });
+  
+// 2. Smooth Scrolling - Alternative Dramatic Version
+const scrollerItems = document.querySelectorAll('.scroller__item');
+const itemHeight = 100; // Height in vh units for each item
+
+// Set initial states
+gsap.set(scrollerItems, { y: 100 });
+
+// Create a timeline for the scroll effect
+const scrollerTL = gsap.timeline({
+  scrollTrigger: {
+    trigger: '.scroller',
+    start: 'top top',
+    end: `+=${(scrollerItems.length - 1) * 100}%`,
+    scrub: true,
+    pin: true
+  }
 });
+
+// Add animations for each item
+scrollerItems.forEach((item, i) => {
+  // First item stays at top
+  if (i === 0) {
+    scrollerTL.to(item, { 
+      y: 0,
+      opacity: 1
+    }, 0);
+  } 
+  // Subsequent items push previous ones up
+  else {
+    scrollerTL.to(scrollerItems[i-1], {
+      y: `-=${itemHeight}`,
+      opacity: 0.7
+    }, i * 0.3);
+    
+    scrollerTL.to(item, {
+      y: 0,
+      opacity: 1
+    }, i * 0.3);
+  }
+});
+  
+    // 3. Cursor Trailer (Basic Agency style)
+    const trailer = document.createElement('div');
+    trailer.classList.add('cursor-trailer');
+    document.body.appendChild(trailer);
+  
+    document.addEventListener('mousemove', e => {
+      gsap.to(trailer, {
+        x: e.clientX,
+        y: e.clientY,
+        duration: 0.8,
+        ease: 'power2.out'
+      });
+    });
+  });
+
+  // Project Image Reveal
+gsap.utils.toArray(".project").forEach((project, i) => {
+    gsap.from(project, {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      ease: "expo.out",
+      scrollTrigger: {
+        trigger: project,
+        start: "top 80%",
+        toggleActions: "play none none none"
+      }
+    });
+    
+    // Hover effect enhancement
+    project.addEventListener("mouseenter", () => {
+      gsap.to(project.querySelector(".project__info"), {
+        opacity: 1,
+        y: 0,
+        duration: 0.6
+      });
+    });
+    
+    project.addEventListener("mouseleave", () => {
+      gsap.to(project.querySelector(".project__info"), {
+        opacity: 0,
+        y: 10,
+        duration: 0.3
+      });
+    });
+  });
+
+  // Remove loader when page loads
+window.addEventListener("load", () => {
+    gsap.to(".loader", {
+      opacity: 0,
+      duration: 0.6,
+      ease: "power2.out",
+      onComplete: () => {
+        document.body.removeChild(document.querySelector(".loader"));
+      }
+    });
+  });
+
+  // Horizontal Scroll for Projects
+document.addEventListener('DOMContentLoaded', () => {
+    const projectsSection = document.querySelector('.projects');
+    
+    if (projectsSection) {
+      // Enable smooth scrolling behavior
+      projectsSection.style.scrollBehavior = 'smooth';
+      
+      // Optional: Add scroll snapping points
+      projectsSection.style.scrollSnapType = 'x mandatory';
+      
+      // Optional: Add this if you want to hide the scrollbar
+      projectsSection.style.scrollbarWidth = 'none'; /* Firefox */
+      projectsSection.style.msOverflowStyle = 'none'; /* IE/Edge */
+    }
+    
+    // Optional: Initialize GSAP ScrollTrigger for horizontal scrolling
+    const projectsGrid = document.querySelector('.projects__grid');
+    if (projectsGrid && ScrollTrigger) {
+      gsap.to(projectsGrid, {
+        x: () => -(projectsGrid.scrollWidth - window.innerWidth),
+        ease: "none",
+        scrollTrigger: {
+          trigger: projectsSection,
+          start: "top top",
+          end: () => `+=${projectsGrid.scrollWidth - window.innerWidth}`,
+          pin: true,
+          scrub: 1,
+          invalidateOnRefresh: true
+        }
+      });
+    }
+  });
+
+  
