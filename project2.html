@@ -34,7 +34,7 @@
   <header class="case-header">
     <div class="case-header__content">
       <h1 class="case-header__title">
-        <span class="line">Emotion Classification</span>
+        <span class="line">Emotion Detection</span>
         <span class="line">Using Deep Learning</span>
       </h1>
       <div class="case-header__meta">
@@ -64,10 +64,11 @@
     <!-- Introduction Section -->
     <section class="case-section">
       <div class="case-section__header">
-        <h2 class="case-section__title">Introduction</h2>
+        <h2 class="case-section__title case-section__title--highlight">Introduction</h2>
       </div>
       <div class="case-section__content">
-        <p class="case-text">Facial Expression Recognition (FER) is a branch of computer vision that seeks to interpret human emotions from facial cues. In this project, I developed a FER system capable of classifying Ekman’s seven universal emotions — anger, disgust, fear, happiness, sadness, surprise, and neutrality — by training a custom deep learning model on a high-quality, carefully curated dataset. The project blends classic and modern FER insights, aiming to make emotion recognition more accurate and accessible even with limited hardware.</p>
+        <p class="case-text"> In this project, I developed a Facial Expression Recognition (FER) system capable of classifying Ekman's seven universal emotions — anger, disgust, fear, happiness, sadness, surprise, and neutrality — by training a custom deep learning model on a high-quality, carefully curated dataset.</p>
+        <p class="case-text">The project blends classic and modern FER insights, aiming to make emotion recognition more accurate and accessible even with limited hardware. </p>
       </div>
     </section>
 
@@ -75,24 +76,25 @@
     <section class="case-section case-section--two-column">
       <div class="case-column">
         <h3 class="case-column__title">The Challenge</h3>
-        <p class="case-text">Most state-of-the-art FER models are trained on constrained datasets or require high-end resources to achieve competitive accuracy. Additionally, expression recognition tends to degrade under real-world conditions — such as varied lighting, subtle expressions, or domain shifts (e.g., from adults to children or from posed to spontaneous expressions).</p>
+        <p class="case-text">Most state-of-the-art FER models are trained on constrained datasets or require high-end resources to achieve competitive accuracy.</p>
+        <p class="case-text">Expression recognition degrades under real-world conditions — such as varied lighting, face coverings or subtle expressions.</p>
       </div>
       <div class="case-column">
         <h3 class="case-column__title">The Solution</h3>
-        <p class="case-text">The project proposes a deep learning-based FER system trained on a hybrid dataset combining real, synthetic, and web-sourced images. The model architecture is based on a fine-tuned ResNet-18 with custom training strategies such as data augmentation, cosine annealing, and cross-domain data curation. This approach offers a balanced tradeoff between performance and resource efficiency.
-        </p>
+        <p class="case-text">A deep learning-based FER system trained on a hybrid dataset combining real, synthetic, and web-sourced images.</p>
+        <p class="case-text">The model architecture is based on a fine-tuned ResNet-18 with custom training strategies such as cross-domain data curation. This approach offers a balanced tradeoff between performance and resource efficiency.</p>
       </div>
     </section>
 
     <!-- Full Width Image -->
-    <!-- <div class="case-image">
-      <img src="con_matrix_7emotions.png" alt="Project Detail">
-    </div> -->
+    <div class="case-image">
+      <img src="emotion_hero.jpg" alt="Project Detail">
+    </div>
 
 <!-- Process Section -->
 <section class="case-section">
   <div class="case-section__header">
-    <h2 class="case-section__title">Process</h2>
+    <h2 class="case-section__title case-section__title--highlight">Process</h2>
   </div>
   <div class="case-section__content">
     <p class="case-text">The approach followed four essential phases:</p>
@@ -106,7 +108,7 @@
       <div class="case-process__item">
         <h4 class="case-process__step">02</h4>
         <h3 class="case-process__title">Dataset Development</h3>
-        <p class="case-process__desc">Curated and manually reviewed ~2,000 high-quality images from multiple datasets and sources, ensuring emotion accuracy and consistency.</p>
+        <p class="case-process__desc">Curated and manually reviewed 14,980 high-quality images from multiple datasets and sources, ensuring emotion accuracy and consistency.</p>
       </div>
       <div class="case-process__item">
         <h4 class="case-process__step">03</h4>
@@ -127,7 +129,7 @@
 
     <section class="case-section">
       <div class="case-section__header">
-        <h2 class="case-section__title">State of the Art</h2>
+        <h2 class="case-section__title case-section__title--highlight">State of the Art</h2>
       </div>
       <div class="case-section__content">
         <p class="case-text">A review of recent research highlights key trade-offs in FER model design:</p>
@@ -156,7 +158,7 @@
     <!-- Theoretical Framework -->
     <section class="case-section">
           <div class="case-section__header">
-            <h2 class="case-section__title">Theoretical Framework</h2>
+            <h2 class="case-section__title case-section__title--highlight">Theoretical Framework</h2>
           </div>
           <div class="case-section__content">
             <p class="case-text">The project is rooted in:</p>
@@ -173,7 +175,7 @@
 
     <section class="case-section">
       <div class="case-section__header">
-        <h2 class="case-section__title">Development and Methodology</h2>
+        <h2 class="case-section__title case-section__title--highlight">Development and Methodology</h2>
       <div class="case-listing">
         <div class="case-listing__group">
           <h4>Dataset Development:</h4>
@@ -208,7 +210,7 @@
     <!-- Results Section -->
     <section class="case-section case-section--dark">
       <div class="case-section__header">
-        <h2 class="case-section__title">Results</h2>
+        <h2 class="case-section__title case-section__title--highlight">Results</h2>
       </div>
       <div class="case-section__content">
         <div class="case-stats">
@@ -226,7 +228,7 @@
           </div>
         </div>
         <p class="case-text">
-          Compared to similar studies using ResNet-18 and MobileNetV2 on FER2013 and mixed datasets, which reported F1-scores ranging from 84% to 86%, this implementation achieved a consistent <strong>macro F1-score of 88%</strong>. The model showed excellent class-wise performance in <em>Happy</em> and <em>Surprise</em>, confirming its effectiveness despite limited resources.
+          According to Singh & Prabha (2024), FER models using MobileNetV2 and ResNet-18 typically achieve between 82.1% and 86% accuracy on datasets like FER2013. This project’s model, based on a refined ResNet-18 architecture, <strong>achieved 88% — exceeding the upper end of this range by ~2%.</strong>
         </p>
       </div>
     </section>
@@ -245,7 +247,7 @@
     <!-- Theoretical Framework -->
     <section class="case-section">
       <div class="case-section__header">
-        <h2 class="case-section__title">Next Steps</h2>
+        <h2 class="case-section__title case-section__title--highlight">Next Steps</h2>
       </div>
       <ul class="case-text--list">
         <li>Add emotion intensity and arousal-valence labeling.</li>
@@ -259,7 +261,7 @@
     <section class="case-cta">
       <div class="case-cta__content">
         <h3 class="case-cta__title">Next Project</h3>
-        <h2 class="case-cta__project">Project Name</h2>
+        <h2 class="case-cta__project">Face Generation Using Autoencoders</h2>
         <a href="project2.html" class="case-cta__link">View Project →</a>
       </div>
     </section>
@@ -269,14 +271,14 @@
   <footer class="footer">
     <div class="footer__content">
       <div class="footer__left">
-        <h3>Victor Cárdenas</h3>
+        <h3>Víctor Cárdenas</h3>
         <p>Data Engineer & Scientist</p>
       </div>
       <div class="footer__right">
         <div class="footer__links">
           <a href="mailto:hello@victor.com" class="footer__link">Email</a>
           <a href="https://www.linkedin.com/in/victor-cardenas-g/" class="footer__link">LinkedIn</a>
-          <a href="#" class="footer__link">GitHub</a>
+          <a href="https://github.com/VictorCardenasG" class="footer__link">GitHub</a>
         </div>
         <p class="footer__copyright">© 2025 Victor Cárdenas. All rights reserved.</p>
       </div>
