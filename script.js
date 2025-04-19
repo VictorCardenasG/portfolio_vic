@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const lines = document.querySelectorAll('.line');
   lines.forEach((line, index) => {
     gsap.from(line, {
-      y: '100%',
+      y: '60%',
       duration: 1.2,
       delay: index * 0.15,
       ease: 'power3.out'
