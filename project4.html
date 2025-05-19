@@ -34,8 +34,8 @@
   <header class="case-header">
     <div class="case-header__content">
       <h1 class="case-header__title">
-        <span class="line">Emotion Classification</span>
-        <span class="line">Using Deep Learning</span>
+        <span class="line">Customer Response</span>
+        <span class="line">Prediction with MLflow</span>
       </h1>
       <div class="case-header__meta">
         <div class="case-meta__item">
@@ -67,7 +67,9 @@
         <h2 class="case-section__title">Introduction</h2>
       </div>
       <div class="case-section__content">
-        <p class="case-text">The objective of this project is to develop a deep learning model that can classify human emotions from images. The model is trained on a dataset of facial images categorized into six emotion classes: Anger, Fear, Happy, Neutral, Sad, and Surprise. The project utilizes a convolutional neural network (CNN) architecture to achieve this task, leveraging the ResNet-152 backbone for feature extraction.</p>
+        <p class="case-text">
+        This project aimed to develop a machine learning pipeline capable of predicting whether a customer would respond to a marketing campaign. The solution involved supervised learning with models like Logistic Regression, Random Forest, and XGBoost. The full pipeline was tracked and orchestrated using MLflow.
+        </p>
       </div>
     </section>
 
@@ -75,11 +77,15 @@
     <section class="case-section case-section--two-column">
       <div class="case-column">
         <h3 class="case-column__title">The Challenge</h3>
-        <p class="case-text">Present datasets on emotion classification fail to detect emotions using simple deep learning architectures.</p>
+        <p class="case-text">
+        Dealing with a highly imbalanced dataset where only ~15% of customers responded, and ensuring the model could generalize well without overfitting.
+        </p>
       </div>
       <div class="case-column">
         <h3 class="case-column__title">The Solution</h3>
-        <p class="case-text">Manually develop a highly diversified dataset which allows to train using a simply ResNet-18 architecture achieving high accuracy and F1 scores.</p>
+        <p class="case-text">
+        A scalable ML experimentation workflow using MLflow for tracking and evaluation. The final solution involved a tuned XGBoost model with custom threshold adjustment to optimize the precision-recall tradeoff.
+        </p>
       </div>
     </section>
 
@@ -99,23 +105,23 @@
         <div class="case-process">
           <div class="case-process__item">
             <h4 class="case-process__step">01</h4>
-            <h3 class="case-process__title">Data Collection</h3>
-            <p class="case-process__desc">Gathering and cleaning the necessary datasets from multiple sources.</p>
+            <h3 class="case-process__title">Data Exploration</h3>
+            <p class="case-process__desc">Performed statistical analysis and visualizations. Identified class imbalance (~15% positive class).</p>
           </div>
           <div class="case-process__item">
             <h4 class="case-process__step">02</h4>
-            <h3 class="case-process__title">Exploratory Analysis</h3>
-            <p class="case-process__desc">Identifying patterns and insights through statistical analysis.</p>
+            <h3 class="case-process__title">Feature Engineering</h3>
+            <p class="case-process__desc">Encoded variables, engineered new features (e.g., customer tenure), and scaled inputs for logistic regression.</p>
           </div>
           <div class="case-process__item">
             <h4 class="case-process__step">03</h4>
-            <h3 class="case-process__title">Model Development</h3>
-            <p class="case-process__desc">Building and training machine learning models.</p>
+            <h3 class="case-process__title">MLflow Experiments</h3>
+            <p class="case-process__desc">Trained over 30 models using varied hyperparameters and evaluated them using MLflow metrics and artifacts.</p>
           </div>
           <div class="case-process__item">
             <h4 class="case-process__step">04</h4>
-            <h3 class="case-process__title">Implementation</h3>
-            <p class="case-process__desc">Deploying the solution into production environment.</p>
+            <h3 class="case-process__title">Threshold Tuning</h3>
+            <p class="case-process__desc">Analyzed precision-recall vs. threshold curves to determine the optimal decision threshold (0.55).</p>
           </div>
         </div>
       </div>
@@ -126,8 +132,72 @@
         <h2 class="case-section__title">01. State of the Art</h2>
       </div>
       <div class="case-section__content">
-        <p class="case-text">Current models offer high precision in terms of emotion detection. Best results are achieved using state of the art models such as VIT.</p>
+        <p class="case-text">
+        Compared traditional models (Logistic Regression, Random Forest) with advanced techniques like XGBoost, including early stopping and scale_pos_weight tuning.
+        </p>
       </section>
+
+
+    <section class="case-section">
+      <div class="case-section__header">
+        <h2 class="case-section__title">Workflow Summary</h2>
+      </div>
+      <div class="case-section__content">
+        <h3 class="case-column__title">1. Exploratory Data Analysis (EDA)</h3>
+        <p class="case-text">
+          I began by exploring the dataset to understand its structure and challenges. The dataset was imbalanced, with only about 15% of customers having responded to past campaigns. Feature distributions, correlation matrices, and missing value analysis were visualized to guide preprocessing.
+        </p>
+        <img src="churn_confussion.png" alt="Correlation Matrix" class="case-image__inline">
+        <p class="case-image-caption">A correlation matrix showing how customer behavior features relate.</p>
+
+        <h3 class="case-column__title">2. Data Preprocessing</h3>
+        <ul class="case-text--list">
+          <li>Missing values in the <code>Income</code> column were imputed using the median strategy.</li>
+          <li>Logistic Regression required feature scaling using <code>StandardScaler</code>.</li>
+          <li>All preprocessing steps were applied carefully to preserve feature meaning for later explainability.</li>
+        </ul>
+
+        <h3 class="case-column__title">3. ML Model Training with MLflow</h3>
+        <p class="case-text">
+          I trained Logistic Regression, Random Forest, and XGBoost models across multiple hyperparameters and tracked all experiments using MLflow. The system logged metrics (accuracy, precision, recall, F1-score), confusion matrix plots, and all serialized artifacts.
+        </p>
+        <img src="churn_threshold.png" alt="Precision vs Recall by Threshold" class="case-image__inline">
+        <p class="case-image-caption">Precision and recall performance across thresholds.</p>
+
+        <h3 class="case-column__title">4. Threshold Tuning</h3>
+        <p class="case-text">
+          Instead of using the default 0.5 threshold, I plotted precision and recall curves against decision thresholds to find the best tradeoff. I selected <strong>threshold = 0.55</strong> to maximize the F1-score while maintaining good precision.
+        </p>
+
+        <h3 class="case-column__title">5. Feature Importance</h3>
+        <p class="case-text">
+          Using XGBoost's built-in feature importance, I discovered that <code>AcceptedCmp5</code> was the most informative feature. This means customers who accepted the most recent past campaign were the most likely to accept a new one.
+        </p>
+        <img src="churn_feature_importance.png" alt="Feature Importance from XGBoost" class="case-image__inline">
+        <p class="case-image-caption">Top features ranked by their contribution to XGBoost's decisions.</p>
+
+        <h3 class="case-column__title">Feature Interpretation</h3>
+        <p class="case-text">
+          The model's most important feature, <code>AcceptedCmp5</code>, indicates whether a customer accepted campaign number five. This binary variable (1 = yes, 0 = no) proved to be a strong signal. It makes intuitive sense that recent campaign engagement predicts future responsiveness.
+        </p>
+
+        <h3 class="case-column__title">Final Model Performance</h3>
+        <ul class="case-text--list">
+          <li>Accuracy: <strong>92%</strong></li>
+          <li>Precision (class 1): <strong>0.69</strong></li>
+          <li>Recall (class 1): <strong>0.86</strong></li>
+          <li>F1-score (class 1): <strong>0.76</strong></li>
+        </ul>
+        <p class="case-text">
+          These results indicate that the final model can successfully identify most true responders with a low false positive rate, enabling smarter campaign targeting.
+        </p>
+      </div>
+    </section>
+
+<!-- Optional Image Placement -->
+<div class="case-image">
+  <img src="xgboost_feature_importance_dark.png" alt="XGBoost Feature Importance">
+</div>
 
 
     <!-- Results Section -->
@@ -138,26 +208,26 @@
       <div class="case-section__content">
         <div class="case-stats">
           <div class="case-stat">
-            <h3 class="case-stat__value">95%</h3>
-            <p class="case-stat__label">Accuracy</p>
+            <h3 class="case-stat__value">92%</h3>
+            <p class="case-stat__label">Overall Accuracy</p>
           </div>
           <div class="case-stat">
-            <h3 class="case-stat__value">4x</h3>
-            <p class="case-stat__label">Faster Processing</p>
+            <h3 class="case-stat__value">0.76</h3>
+            <p class="case-stat__label">F1 Score for Class 1</p>
           </div>
           <div class="case-stat">
-            <h3 class="case-stat__value">10K</h3>
-            <p class="case-stat__label">Daily Predictions</p>
+            <h3 class="case-stat__value">0.86</h3>
+            <p class="case-stat__label">Recall for Class 1</p>
           </div>
         </div>
-        <p class="case-text">The implemented solution delivered significant improvements in processing time and accuracy, enabling the client to make data-driven decisions with confidence.</p>
+        <p class="case-text">The final XGBoost model achieved a strong balance between precision (0.69) and recall (0.86) using a tuned threshold of 0.55. This performance significantly outperformed baseline models and enabled confident decision-making in campaign targeting.</p>
       </div>
     </section>
 
     <!-- Gallery Section -->
     <section class="case-gallery">
       <div class="case-gallery__item">
-        <img src="project_gallery_1.jpg" alt="Project Gallery Image 1">
+        <img src="churn_threshold.png" alt="Project Gallery Image 1">
       </div>
       <div class="case-gallery__item">
         <img src="project_gallery_2.jpg" alt="Project Gallery Image 2">
