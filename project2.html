@@ -54,11 +54,13 @@
     </div>
   </header>
 
-  <!-- Hero Image -->
   <div class="case-hero">
-    <img src="project_4.png" alt="Project Hero Image" class="case-hero__image">
+    <picture>
+      <source srcset="project_4_mobile.png" media="(max-width: 768px)">
+      <img src="project_4.png" alt="Hero Image" class="case-hero__image">
+    </picture>
   </div>
-
+  
   <!-- Case Study Content -->
   <main class="case-content">
     <!-- Introduction Section -->
@@ -108,7 +110,7 @@
       <div class="case-process__item">
         <h4 class="case-process__step">02</h4>
         <h3 class="case-process__title">Dataset Development</h3>
-        <p class="case-process__desc">Curated and manually reviewed 14,980 high-quality images from multiple datasets and sources, ensuring emotion accuracy and consistency.</p>
+        <p class="case-process__desc">Curated and manually reviewed 23,450 high-quality images from multiple datasets and sources, ensuring emotion accuracy and consistency.</p>
       </div>
       <div class="case-process__item">
         <h4 class="case-process__step">03</h4>
@@ -118,7 +120,7 @@
       <div class="case-process__item">
         <h4 class="case-process__step">04</h4>
         <h3 class="case-process__title">Evaluation & Benchmarking</h3>
-        <p class="case-process__desc">Achieved 88% accuracy. Compared results with state-of-the-art models from recent FER literature.</p>
+        <p class="case-process__desc">Achieved 90% accuracy and 90% F1-score. Compared results with state-of-the-art models from recent FER literature.</p>
       </div>
     </div>
   </div>
@@ -180,7 +182,7 @@
         <div class="case-listing__group">
           <h4>Dataset Development:</h4>
           <ul>
-            <li>~2,000 manually reviewed images across seven emotion classes.</li>
+            <li>23,450 manually reviewed images across seven emotion classes.</li>
             <li>Sources: FER-2013, AffectNet, Oulu-CASIA, MMI, web scraping, Meta & Gemini-generated faces.</li>
           </ul>
         </div>
@@ -215,20 +217,20 @@
       <div class="case-section__content">
         <div class="case-stats">
           <div class="case-stat">
-            <h3 class="case-stat__value">88%</h3>
-            <p class="case-stat__label">Overall accuracy across 1,498 validation samples.</p>
+            <h3 class="case-stat__value">90%</h3>
+            <p class="case-stat__label">Overall accuracy across 3,521 validation samples.</p>
           </div>
           <div class="case-stat">
-            <h3 class="case-stat__value">0.96 F1</h3>
+            <h3 class="case-stat__value">0.90 F1</h3>
             <p class="case-stat__label">Highest-scoring classes: <strong>Happy</strong> and <strong>Surprise</strong>.</p>
           </div>
           <div class="case-stat">
-            <h3 class="case-stat__value">+2%↑</h3>
+            <h3 class="case-stat__value">+4%↑</h3>
             <p class="case-stat__label">Outperformed average ResNet-18 FER models (typically ~86%) on FER2013-like datasets.</p>
           </div>
         </div>
         <p class="case-text">
-          According to Singh & Prabha (2024), FER models using MobileNetV2 and ResNet-18 typically achieve between 82.1% and 86% accuracy on datasets like FER2013. This project’s model, based on a refined ResNet-18 architecture, <strong>achieved 88% — exceeding the upper end of this range by ~2%.</strong>
+          According to Singh & Prabha (2024), FER models using MobileNetV2 and ResNet-18 typically achieve between 82.1% and 86% accuracy on datasets like FER2013. This project’s model, based on a refined ResNet-18 architecture, <strong>achieved 90% — exceeding the upper end of this range by ~4%.</strong>
         </p>
       </div>
     </section>
@@ -255,6 +257,13 @@
         <li>Deploy the model in a lightweight desktop app or mobile tool for psychology, education, or HCI applications.</li>
         <li>Evaluate performance on datasets like VFEM or AffWild2 for deeper mental health analysis integration.</li>
       </ul>
+    </section>
+
+    <!-- Gallery Section -->
+    <section class="case-gallery">
+      <div class="case-gallery__item">
+        <img src="confussion_7_summer.png" alt="Project Gallery Image 1">
+      </div>
     </section>
 
     <!-- Next Project CTA -->
